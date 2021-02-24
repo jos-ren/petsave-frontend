@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.scss';
-import Button from "comps/Button";
+import Button from "comps/Button/default";
+import RoundButton from 'comps/Button/round';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </a>
       </header>
       <Button />
+      <RoundButton />
     </div>
   );
 }
