@@ -1,5 +1,7 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Button from "comps/Button/default";
+import RoundButton from 'comps/Button/round';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <Button />
+      <RoundButton />
     </div>
   );
 }
