@@ -14,7 +14,7 @@ const NormalButton = styled.button`
   min-width: 366px;
   min-height: 64px;
   // background-color: #094D69;
-  background-color: ${props=>props.disable ? "#000" : "#c4c4c4"};
+  background-color: ${props=>props.disable && props.bgcolor ? props.bgcolor : "#c4c4c4"};
 
   border-radius: 10px;
 
@@ -34,7 +34,7 @@ const Text = styled.h3`
   text-transform: capitalize;
 `;
 
-const Button = ({ text, onClick, margin, disable}) => {
+const Button = ({ text, onClick, margin, disable, bgcolor}) => {
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
@@ -44,6 +44,7 @@ const Button = ({ text, onClick, margin, disable}) => {
   return (
     <Container margin={margin}>
       <NormalButton
+      bgcolor={bgcolor}
         disable={disabled}
         onClick={() => {
             setDisabled(!disabled);
@@ -59,6 +60,7 @@ const Button = ({ text, onClick, margin, disable}) => {
 Button.defaultProps = {
   text: "create account",
   margin: null,
+  bgcolor: "#000",
   disable: false,
   onClick:()=>{}
 };
