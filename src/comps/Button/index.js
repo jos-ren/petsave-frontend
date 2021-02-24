@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  // margin: 10px 0px;
   margin: ${props=>props.margin ? props.margin : null}
 `;
 
@@ -12,31 +11,45 @@ const NormalButton = styled.button`
   align-items: center;
   justify-content: center;
 
-  min-width: ${props=>props.width ? props.width: "308px"};
-  max-height: 81px;
-  min-height: ${props=>props.height ? props.height : "81px"};
+  min-width: 366px;
+  min-height: 64px;
   // background-color: #094D69;
-  background-color: ${(props) => (props.bgcolor ? props.bgcolor : "#094D69")};
+  background-color: ${props=>props.disable ? "#000" : "#c4c4c4"};
 
   border-radius: 10px;
 
   cursor: pointer;
   border: none;
 
-  &:hover, &:select {
-    opacity: 0.8;
-    transition: opacity 0.2s;
+  &:hover{
+    transform: ${props=>props.disable ? "scale(1.01)" : null};
+    transition: ${props=>props.disable ? "transform 0.5s" : null};
+    // background-color: ${props=>props.disable ? "#54BAF3" : null};
+    // transition: ${props=>props.disable ? "background-color 0.5s" : null};
   }
 `;
 
-const Text = styled.h2`
-  color: #ffffff;
+const Text = styled.h3`
+  color: #fff;
+  text-transform: capitalize;
 `;
 
-const Button = ({ text, bgcolor, onClick, width, margin, height}) => {
+const Button = ({ text, onClick, margin, disable}) => {
+    const [disabled, setDisabled] = useState(false);
+
+    useEffect(() => {
+      setDisabled(disable);
+    }, [disable]);
+
   return (
-    <Container onClick={onClick} margin={margin}>
-      <NormalButton bgcolor={bgcolor} width={width} height={height}>
+    <Container margin={margin}>
+      <NormalButton
+        disable={disabled}
+        onClick={() => {
+            setDisabled(!disabled);
+            onClick();
+        }}
+      >
         <Text>{text}</Text>
       </NormalButton>
     </Container>
@@ -44,11 +57,10 @@ const Button = ({ text, bgcolor, onClick, width, margin, height}) => {
 };
 
 Button.defaultProps = {
-  text: "Go to Home",
-  bgcolor: null,
-  width: null,
+  text: "create account",
   margin: null,
-  height: null
+  disable: false,
+  onClick:()=>{}
 };
 
 export default Button;
