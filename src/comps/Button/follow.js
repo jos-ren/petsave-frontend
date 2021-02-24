@@ -6,14 +6,14 @@ const Container = styled.div`
   margin: ${props=>props.margin ? props.margin : null}
 `;
 
-const NormalButton = styled.button`
+const ButtonBox = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 366px;
+  min-width: 168px;
   min-height: 64px;
   // background-color: #094D69;
-  background-color: ${props=>props.disable && props.bgcolor ? props.bgcolor : "#c4c4c4"};
+  background-color: ${props=>props.disable ? "#000" : "#54BAF3"};
 
   border-radius: 10px;
 
@@ -33,35 +33,40 @@ const Text = styled.h3`
   text-transform: capitalize;
 `;
 
-const Button = ({ text, onClick, margin, disable, bgcolor}) => {
+const FollowButton = ({onClick, margin, disable, bgcolor}) => {
     const [disabled, setDisabled] = useState(false);
+    const [text, setText] = useState("follow");
 
-    useEffect(() => {
-      setDisabled(disable);
-    }, [disable]);
+    const changeText = () => {
+        if(disabled == true){
+            setText("following")
+        } else {
+            setText("follow")
+        }
+    }
 
   return (
     <Container margin={margin}>
-      <NormalButton
+      <ButtonBox
       bgcolor={bgcolor}
-        disable={disabled}
+      disable={disabled}
         onClick={() => {
             setDisabled(!disabled);
             onClick();
+            changeText();
         }}
       >
         <Text>{text}</Text>
-      </NormalButton>
+      </ButtonBox>
     </Container>
   );
 };
 
-Button.defaultProps = {
-  text: "create account",
+FollowButton.defaultProps = {
   margin: null,
   bgcolor: "#000",
   disable: false,
   onClick:()=>{}
 };
 
-export default Button;
+export default FollowButton;
