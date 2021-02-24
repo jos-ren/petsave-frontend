@@ -11,9 +11,9 @@ const ButtonBox = styled.button`
   align-items: center;
   justify-content: center;
   min-width: 168px;
-  min-height: 64px;
+  min-height: 50px;
   // background-color: #094D69;
-  background-color: ${props=>props.disable ? "#000" : "#54BAF3"};
+  background-color: ${props=>props.disable ? "#54BAF3" : "#000"};
 
   border-radius: 10px;
 
@@ -38,8 +38,9 @@ const FollowButton = ({onClick, margin, disable, bgcolor}) => {
     const [text, setText] = useState("follow");
 
     const changeText = () => {
-        if(disabled == true){
-            setText("following")
+      setDisabled(!disabled);
+        if(disabled == false){
+            setText("following");
         } else {
             setText("follow")
         }
@@ -51,7 +52,6 @@ const FollowButton = ({onClick, margin, disable, bgcolor}) => {
       bgcolor={bgcolor}
       disable={disabled}
         onClick={() => {
-            setDisabled(!disabled);
             onClick();
             changeText();
         }}

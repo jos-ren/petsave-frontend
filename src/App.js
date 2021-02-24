@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import Button from "comps/Button/default";
 import RoundButton from 'comps/Button/round';
+import ProfileInfo from 'comps/ProfileInfo';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       </header>
       <Button />
       <RoundButton />
+      <ProfileInfo />
     </div>
   );
 }
