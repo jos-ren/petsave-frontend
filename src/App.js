@@ -4,6 +4,7 @@ import NavBar from './comps/NavBar';
 import AddPhoto from './comps/AddPhoto';
 import Backdrop from './comps/Backdrop';
 import Comment from './comps/Comment';
+import HomeFeed from './comps/HomeFeed';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <AddPhoto />      
       <Comment />
       <Backdrop />
+      <HomeFeed />
 
     </div>
   );

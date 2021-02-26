@@ -7,20 +7,32 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-width: 366px;
-height: 366px;
+max-width: ${props=>props.width ? props.width : "366px"};
+min-width:${props=>props.width ? props.width : "366px"};
+max-height: ${props=>props.height ? props.height : "366px"};
+min-height: ${props=>props.height ? props.height : "366px"};
 border-radius: 36px;
 background-color: #000000;
 `;
 
-const AddPhoto = ({onContainerSelect}) => {
+const AddPhoto = ({width, height, onAddPhotoClick}) => {
 
-    return <Container>
-        <Add fill="#FFFFFF" height="65px" width="65px" />
+    const [uploadClick, setUploadClick] = useState(false); 
+
+    return <Container width={width} height={height} onChange={(e)=>{
+        setUploadClick(); //Changes when user uploads a photo
+    }}>
+        <Add fill="#FFFFFF" height="65px" width="65px" onClick={()=>{
+        onAddPhotoClick(uploadClick)
+        console.log(uploadClick);
+    }}/>
     </Container>
 }
 
 AddPhoto.defaultProps = {
+    width: null,
+    height: null,
+    onAddPhotoClick:()=>{}
 }
 
 export default AddPhoto;

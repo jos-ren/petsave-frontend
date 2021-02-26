@@ -20,24 +20,59 @@ top: -5px;
 display: flex;
 justify-content: center;
 align-items: center;
-height: 40px;
-width: 40px;
+min-height: 40px;
+max-height: 40px;
+min-width: 40px;
+max-width: 40px;
 background-color: #FF9E50;
 border-radius: 12px;
 `;
 
-const NavBar = ({ option, onContainerSelect}) => {
+const IconCont = styled.div`
+min-width: 30px;
+max-width: 30px;
+min-height: 30px;
+max-height: 30px;
+`;
+
+
+const NavBar = ({home, profile, onHomeClick, onProfileClick}) => {
+
+    const [homeClick, setHomeClick] = useState(false); 
+    const [profileClick, setProfileClick] = useState(false);
 
     return <Container>
-        <img src={home_outline} />
+        {/* When user clicks the home_outline icon, the container will change the icon to home (filled) */}
+        <IconCont onChange={(e)=>{
+            setHomeClick(); //Need to figure out how to replace images again. I forget..
+        }}>
+            <img onClick={()=>{
+                onHomeClick(homeClick)
+                console.log(homeClick);
+            }} name="home" src={home} />
+        </IconCont>
+
         <AddButton>
                 <Add fill="#FFFFFF" height="20px" width="20px" />
         </AddButton>
-        <img src={profile_outline} />
+
+        {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
+        <IconCont onChange={(e)=>{
+            setProfileClick(); //Need to figure out how to replace images again. I forget..
+        }}>
+            <img onClick={()=>{
+                onProfileClick(profileClick)
+                console.log(profileClick);
+            }} name="profile" src={profile} />
+        </IconCont>
     </Container>
 }
 
 NavBar.defaultProps = {
+    home: home_outline,
+    profile: profile_outline,
+    onHomeClick:()=>{},
+    onProfileClick:()=>{}
 }
 
 export default NavBar;    

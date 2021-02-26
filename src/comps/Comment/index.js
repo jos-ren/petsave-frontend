@@ -17,8 +17,10 @@ flex-direction: row;
 `;
 
 const AvatarIcon = styled.div`
-height: 36px;
-width: 36px;
+max-height: 36px;
+min-height: 36px;
+max-width: 36px;
+min-width: 36px;
 background-color: #DAB;
 border-radius: 50%;
 `;
@@ -37,7 +39,8 @@ font-weight: semi-bold;
 font-family: Inter;
 color: #808080;
 padding: 0px 20px 10px 20px;
-max-width: 414px;
+max-width: 500px;
+min-width: 300px;
 `;
 
 const Divider = styled.div`
