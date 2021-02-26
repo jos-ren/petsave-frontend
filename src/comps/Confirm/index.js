@@ -15,9 +15,6 @@ const Container = styled.div`
     text-align: center;
     align-items: center;
     align-content:center;
-    div {
-
-    }
 `;
 
 const CheckMark = styled.img`
