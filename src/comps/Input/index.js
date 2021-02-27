@@ -23,15 +23,16 @@ const InputDiv = styled.input`
 }
 `;
 
-const Input = ({ header }) => {
+const Input = ({ header, id }) => {
     return <div>
         <h3> {header} </h3>
-        <InputDiv type="text"/>
+        <InputDiv type="text" id={id} />
     </div>
 };
 
 Input.defaultProps = {
     header: "Name",
+    id: "name",
 };
 
 export default Input;
