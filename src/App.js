@@ -3,29 +3,15 @@ import './App.scss';
 import Button from "comps/Button/default";
 import RoundButton from 'comps/Button/round';
 import ProfileInfo from 'comps/ProfileInfo';
+import Input from 'comps/Input';
+import MultiLineInput from 'comps/MultiLineInput';
+import SinglePost from 'comps/SinglePost';
+import TopNav from 'comps/TopNav';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Button />
-      <RoundButton />
-      <ProfileInfo />
-    </div>
-  );
+  return <div>
+    <MultiLineInput />
+  </div>
 }
 
 export default App;
