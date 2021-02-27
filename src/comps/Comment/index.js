@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Add} from '../../icons/add.svg';
 
 const Container = styled.div`
 display: flex;
@@ -23,6 +22,12 @@ max-width: 36px;
 min-width: 36px;
 background-color: #DAB;
 border-radius: 50%;
+    .prof_img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit:cover;
+    }
 `;
 
 const UserName = styled.div`
@@ -44,21 +49,26 @@ min-width: 300px;
 `;
 
 const Divider = styled.div`
+
 display: flex;
 border-bottom: 1px solid #C1C1C1;
+max-width: 570px;
+min-width: 350px;
 `;
 
 
-const Comment = ({onContainerSelect}) => {
+const Comment = ({}) => {
 
     return <Container>
         <InnerCont>
             <div className="avatar_block">
-                <AvatarIcon />
+                <AvatarIcon>
+                    <img className="prof_img" src='img/profile.jpg' />
+                </AvatarIcon>
             </div>
             <div>
-                <UserName>Josh Renema</UserName>
-                <UserComment>Lorem Ipsum BumBumBum Lorem Ipsum BumBumBum Lorem Ipsum BumBumBum Lorem Ipsum BumBumBum </UserComment>
+                <UserName>Maya Higa</UserName>
+                <UserComment>Wow, really an incredible story... It’s great to see some of the amazing work you are all doing at Alveus!</UserComment>
             </div>
         </InnerCont>
         <Divider />

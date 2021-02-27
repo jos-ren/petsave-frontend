@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Add} from '../../icons/add.svg';
 
 const Container = styled.div`
 display: flex;
@@ -22,10 +21,11 @@ const AddPhoto = ({width, height, onAddPhotoClick}) => {
     return <Container width={width} height={height} onChange={(e)=>{
         setUploadClick(); //Changes when user uploads a photo
     }}>
-        <Add fill="#FFFFFF" height="65px" width="65px" onClick={()=>{
+        <img src='/icons/add.svg' fill="#FFFFFF" height="65px" width="65px" onClick={()=>{
         onAddPhotoClick(uploadClick)
         console.log(uploadClick);
     }}/>
+
     </Container>
 }
 

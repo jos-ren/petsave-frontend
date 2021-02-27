@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import home_outline from '../../icons/home_outline.svg';
-import profile_outline from '../../icons/profile_outline.svg';
-import {ReactComponent as Add} from '../../icons/add.svg';
 
 const Container = styled.div`
 display: flex;
@@ -11,7 +8,6 @@ justify-content: space-around;
 height: 30px;
 padding: 15px 60px 15px 60px;
 background-color: #FFFFFF;
-border: 1px solid #D3D3D3;
 `;
 
 const AddButton = styled.div`
@@ -24,7 +20,7 @@ min-height: 40px;
 max-height: 40px;
 min-width: 40px;
 max-width: 40px;
-background-color: #FF9E50;
+background-color: #51C5F1;
 border-radius: 12px;
 `;
 
@@ -49,28 +45,26 @@ const NavBar = ({home, profile, onHomeClick, onProfileClick}) => {
             <img onClick={()=>{
                 onHomeClick(homeClick)
                 console.log(homeClick);
-            }} name="home" src={home} />
+            }} name="home" src='/icons/home_outline.svg' />
         </IconCont>
 
         <AddButton>
-                <Add fill="#FFFFFF" height="20px" width="20px" />
+                <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" />
         </AddButton>
 
         {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
         <IconCont onChange={(e)=>{
-            setProfileClick(); //Need to figure out how to replace images again. I forget..
+            setProfileClick(); //Here too.
         }}>
             <img onClick={()=>{
                 onProfileClick(profileClick)
                 console.log(profileClick);
-            }} name="profile" src={profile} />
+            }} name="profile" src='/icons/profile_outline.svg' />
         </IconCont>
     </Container>
 }
 
 NavBar.defaultProps = {
-    home: home_outline,
-    profile: profile_outline,
     onHomeClick:()=>{},
     onProfileClick:()=>{}
 }

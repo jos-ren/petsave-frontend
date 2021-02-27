@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Add} from '../../icons/add.svg';
-import hawk from '../../img/hawk.jpg';
-
-// & img{
-//     width:375px;
-//     height:250px;
-//     object-fit:cover;
-// }
 
 const Container = styled.div`
 display: flex;
@@ -41,8 +33,6 @@ const ImgCont = styled.div`
 width: 100%;
 height:${props=>props.height ? props.height : "220px"};
 border-radius: 16px;
-background-color: #F1B900;
-background-color: #000000;
 margin-bottom: 10px;
     .img{
         width: 100%;
@@ -54,27 +44,58 @@ margin-bottom: 10px;
 
 
 
-const HomeFeed = ({onContainerSelect}) => {
+const HomeFeed = ({onFeedPhotoClick, }) => {
+
+    const [feedClick, setFeedClick] = useState(false); 
 
     return <Container>
-        <Column1>      
-            <ImgCont>
-                <img className="img" src={hawk} />
+        <Column1>  
+
+            <ImgCont onChange={(e)=>{
+        setFeedClick(); //Opens the selected photo
+    }}>
+                <img className="img" src='img/bunny.jpg' onClick={()=>{
+        onFeedPhotoClick(feedClick)
+        console.log(feedClick);
+    }}/>
             </ImgCont>
-            <ImgCont >
-                <img className="img" src={hawk} />
+
+            <ImgCont onChange={(e)=>{
+        setFeedClick(); //Opens the selected photo
+    }}>
+                <img className="img" src='img/duck.jpg' onClick={()=>{
+        onFeedPhotoClick(feedClick)
+        console.log(feedClick);
+    }}/>
             </ImgCont>
         </Column1>
 
         <Column2>      
-            <ImgCont height="120px">
-                <img className="img" src={hawk} />
+        <ImgCont height="120px" onChange={(e)=>{
+        setFeedClick(); //Opens the selected photo
+    }}>
+                <img className="img" src='img/gecko.jpg' onClick={()=>{
+        onFeedPhotoClick(feedClick)
+        console.log(feedClick);
+    }}/>
             </ImgCont>
-            <ImgCont>
-                <img className="img" src={hawk} />
+
+            <ImgCont onChange={(e)=>{
+        setFeedClick(); //Opens the selected photo
+    }}>
+                <img className="img" src='img/fox.jpg' onClick={()=>{
+        onFeedPhotoClick(feedClick)
+        console.log(feedClick);
+    }}/>
             </ImgCont>
-            <ImgCont height="120px">
-                <img className="img" src={hawk} />
+
+            <ImgCont height="120px" onChange={(e)=>{
+        setFeedClick(); //Opens the selected photo
+    }}>
+                <img className="img" src='img/kittyrescue.jpg' onClick={()=>{
+        onFeedPhotoClick(feedClick)
+        console.log(feedClick);
+    }}/>
             </ImgCont>
         </Column2>
 
@@ -82,7 +103,8 @@ const HomeFeed = ({onContainerSelect}) => {
 }
 
 HomeFeed.defaultProps = {
-    height: null
+    height: null,
+    onFeedPhotoClick:()=>{}
 }
 
 export default HomeFeed;  
