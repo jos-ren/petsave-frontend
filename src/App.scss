@@ -5,6 +5,13 @@ body, html {
   overflow-x: hidden;
 }
 
+@mixin flexIt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 @import './index.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
@@ -59,4 +66,65 @@ p {
   font-weight: 400;
   font-size: 14px;
   margin: 0;
+}
+
+// ------------------
+
+#blockColorblindContent {
+  display: none;
+}
+
+.page {
+  @include flexIt();
+  margin: 20px;
+  justify-content: space-between;
+}
+
+.page_flexbox {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  min-width: 295px;
+  height: auto;
+  margin-top: 5em;
+}
+
+// about page
+.about_img {
+  margin-top: 3.5em;
+  & > * {
+    margin: 10px;
+  }
+}
+
+#about_img2 {
+  @include flexIt();
+  align-items: flex-start;
+}
+
+.about_text {
+  text-align: center;
+  font-size: 18px;
+  margin: 3em 0px;
+}
+
+//  login page
+.login_input {
+  margin-top: 5em;
+}
+
+.login_but {
+  height: 20vh;
+  @include flexIt();
+  justify-content: space-between;
+
+  & > div {
+    padding-top: 2em;
+    @include flexIt();
+  }
 }
