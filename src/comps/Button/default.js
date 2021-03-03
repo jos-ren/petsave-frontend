@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
-  margin: ${props=>props.margin ? props.margin : null}
+  margin: ${props=>props.margin ? props.margin : null};
 `;
 
 const NormalButton = styled.button`

@@ -13,7 +13,7 @@ const InputDiv = styled.input`
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 14px;
-    padding-left:12px;
+    padding-left:20px;
 :focus{
     outline: none;
     background: #F8FAFA;
@@ -23,16 +23,18 @@ const InputDiv = styled.input`
 }
 `;
 
-const Input = ({ header, id }) => {
+const Input = ({ header, id, placeholder, type }) => {
     return <div>
         <h3> {header} </h3>
-        <InputDiv type="text" id={id} />
+        <InputDiv type={type} placeholder={placeholder} id={id} />
     </div>
 };
 
 Input.defaultProps = {
     header: "Name",
     id: "name",
+    type:"text",
+    placeholder:"joesmith"
 };
 
 export default Input;

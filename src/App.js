@@ -1,15 +1,10 @@
-import logo from './logo.svg';
-import './App.scss';
-import react, { useEffect, useState } from 'react';
-import jwtDecode from "jwt-decode";
-import useLocalStorage from "react-use-localstorage";
-import Button from "comps/Button/default";
-import RoundButton from 'comps/Button/round';
-import ProfileInfo from 'comps/ProfileInfo';
-import Input from 'comps/Input';
-import MultiLineInput from 'comps/MultiLineInput';
-import SinglePost from 'comps/SinglePost';
-import TopNav from 'comps/TopNav';
+import React, { useState, useEffect } from "react";
+import "./App.scss";
+import axios from "axios";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import About from 'pages/about';
+import Login from 'pages/login';
 
 function App() {
   const [token, setToken] = useLocalStorage("token");
@@ -21,7 +16,16 @@ function App() {
   }, [token]);
 
   return <div>
-    <MultiLineInput />
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <About />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
   </div>
 }
 
