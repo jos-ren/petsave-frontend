@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import Button from 'comps/Button/default';
 
 const Container = styled.div`
@@ -14,7 +14,6 @@ const Container = styled.div`
     flex-direction: column;
     text-align: center;
     align-items: center;
-    align-content:center;
 `;
 
 const CheckMark = styled.img`
@@ -22,18 +21,43 @@ const CheckMark = styled.img`
     height: 105px;
 `;
 
-const ConfirmBox = ({text}) => {
+const PostCreated = styled.div`
+    ${props=>props.reMove1 === true && css`
+        display: none;
+    `}
+`;
+
+const Logout = styled.div`
+    ${props=>props.reMove2 === true && css`
+        display: none;
+    `}
+`;
+
+const ConfirmBox = ({text, reMove1, reMove2}) => {
   return <Container>
-        <CheckMark src="/icons/check-solid 1.svg" />
+
+        <PostCreated reMove1={reMove1}>        
+            <CheckMark src="/icons/check-solid 1.svg" />
+        </PostCreated>
+
         <h2>{text}</h2>
-        <div>
-            <Button text="Go to Home" />
-        </div>
+
+        <PostCreated reMove1={reMove1}>
+            <Button disable={true} text="Go to Home" width="257px" height="50px" />
+        </PostCreated>
+
+        <Logout reMove2={reMove2}>
+            <Button disable={true} margin="12px" text="Yes, log out" width="257px" height="50px" />
+            <Button disable={true} bgcolor="#54BAF3" text="No, go back Home" width="257px" height="50px" />
+        </Logout>
+
     </Container>
 };
 
 ConfirmBox.defaultProps = {
     text: "Your post has been created!",
+    reMove1: true,
+    reMove2: true,
 };
 
 export default ConfirmBox;
