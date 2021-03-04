@@ -6,9 +6,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import About from 'pages/about';
 import Login from 'pages/login';
 
+import UserProfile from 'pages/userprofile';
+import Profile from 'pages/profile';
+
 function App() {
   return <div>
-    <Router>
+    {/* <Router>
       <Switch>
         <Route exact path="/">
           <About />
@@ -17,7 +20,8 @@ function App() {
           <Login />
         </Route>
       </Switch>
-    </Router>
+    </Router> */}
+    <UserProfile />
   </div>
 }
 

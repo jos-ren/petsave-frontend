@@ -38,6 +38,10 @@ const Image = styled.img`
     height: 100px;
 `;
 
+const ButtonBox = styled.div`
+    display: ${props => props.displayfollow ? props.displayfollow : ""};
+`;
+
 const Box = styled.div`
     display: flex;
     flex-direction: column;
@@ -54,7 +58,8 @@ const Box = styled.div`
 
 const Name = styled.h2`
     text-transform: capitalize;
-    margin-bottom: 10px;
+    margin: 0px 0px 10px 15px;
+    font-size: ${props => props.username ? props.username : ""};
 `;
 
 const Bottom = styled.div`
@@ -78,17 +83,17 @@ const Text = styled.h6`
     color: rgba(0, 0, 0, 0.5);
 `;
 
-const ProfileInfo = ({onClick, name, imgurl, numpost, numfollow, numfollower}) => {
+const ProfileInfo = ({onClick, name, imgurl, numpost, numfollow, numfollower, displayfollow, displaymsg, username}) => {
     return (
         <Container>
             <Top>
                 <Image src={imgurl}/>
                 <Box>
-                    <Name>{name}</Name>
-                    <div>
-                        <FollowButton />
-                        <RoundButton onClick={onClick}/>
-                    </div>
+                    <Name username={username}>{name}</Name>
+                    <ButtonBox>
+                        <FollowButton displayfollow={displayfollow} />
+                        <RoundButton displaymsg={displaymsg} onClick={onClick}/>
+                    </ButtonBox>
                 </Box>
             </Top>
             <Bottom>
@@ -115,7 +120,10 @@ ProfileInfo.defaultProps = {
     numpost:24,
     numfollower:6732,
     numfollow:365,
-    onClick:()=>{}
+    onClick:()=>{},
+    displayfollow: "flex",
+    displaymsg: "flex",
+    username: "24px"
 };
 
 export default ProfileInfo;

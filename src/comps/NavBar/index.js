@@ -5,6 +5,8 @@ const Container = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-around;
+min-width: 414px;
+max-width: 414px;
 height: 30px;
 padding: 15px 60px 15px 60px;
 background-color: #FFFFFF;
@@ -22,6 +24,8 @@ min-width: 40px;
 max-width: 40px;
 background-color: #51C5F1;
 border-radius: 12px;
+cursor: pointer;
+border: none;
 `;
 
 const IconCont = styled.div`
@@ -29,10 +33,12 @@ min-width: 30px;
 max-width: 30px;
 min-height: 30px;
 max-height: 30px;
+cursor: pointer;
+border: none;
 `;
 
 
-const NavBar = ({home, profile, onHomeClick, onProfileClick}) => {
+const NavBar = ({home, profile, onHomeClick, profileIcon, onProfileClick}) => {
 
     const [homeClick, setHomeClick] = useState(false); 
     const [profileClick, setProfileClick] = useState(false);
@@ -59,14 +65,15 @@ const NavBar = ({home, profile, onHomeClick, onProfileClick}) => {
             <img onClick={()=>{
                 onProfileClick(profileClick)
                 console.log(profileClick);
-            }} name="profile" src='/icons/profile_outline.svg' />
+            }} name="profile" src={profileIcon} />
         </IconCont>
     </Container>
 }
 
 NavBar.defaultProps = {
     onHomeClick:()=>{},
-    onProfileClick:()=>{}
+    onProfileClick:()=>{},
+    profileIcon:"/icons/profile_outline.svg"
 }
 
 export default NavBar;    

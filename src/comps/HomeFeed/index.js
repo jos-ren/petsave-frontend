@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Container = styled.div`
 display: flex;
 flex-direction: row;
-min-width: 300px;
-max-width: 600px;
+min-width: 414px;
+max-width: 414px;
 height: auto;
 `;
 
