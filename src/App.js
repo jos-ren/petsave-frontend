@@ -11,7 +11,7 @@ import Profile from 'pages/profile';
 
 function App() {
   return <div>
-    {/* <Router>
+    <Router>
       <Switch>
         <Route exact path="/">
           <About />
@@ -19,9 +19,15 @@ function App() {
         <Route exact path="/login">
           <Login />
         </Route>
+
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
+        <Route exact path="/userprofile">
+          <UserProfile />
+        </Route>
       </Switch>
-    </Router> */}
-    <UserProfile />
+    </Router>
   </div>
 }
 

@@ -14,7 +14,7 @@ function UserProfile ({}) {
     return (
         <div className="page">
         <TopNav displayl='none' iconright='/icons/settings.svg' />
-        <ProfileInfo displayfollow='none' displaymsg='none' username="30px" />
+        <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg' />
         <HomeFeed />
         <NavBar profileIcon='icons/profile.svg' />
 
