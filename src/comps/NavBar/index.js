@@ -9,7 +9,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-around;
 min-width: 414px;
-max-width: 414px;
+max-width: 100%;
 height: 30px;
 padding: 15px 60px 15px 60px;
 background-color: #FFFFFF;

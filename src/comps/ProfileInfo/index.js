@@ -6,7 +6,8 @@ import RoundButton from "comps/Button/round";
 
 const Container = styled.div`
     min-width: 414px;
-    min-height: 233px;
+    max-width: 414px;
+    min-height: 220px;
     background-color: #fff;
     display: flex;
     flex-direction: column;

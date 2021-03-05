@@ -12,7 +12,7 @@ function UserProfile ({}) {
     const history = useHistory();
 
     return (
-        <div className="page">
+        <div className="profile_page">
         <TopNav displayl='none' iconright='/icons/settings.svg' />
         <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg' />
         <HomeFeed />

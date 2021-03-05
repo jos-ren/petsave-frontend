@@ -12,7 +12,7 @@ function Profile ({}) {
     const history = useHistory();
 
     return (
-        <div className="page">
+        <div className="profile_page">
             <TopNav displayr='none'/>
             <ProfileInfo />
             <HomeFeed />
