@@ -1,32 +1,62 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import LikesIcon from 'comps/Test';
 
-
-const Icon = styled.img`
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
-const LikeButton = ({onClick, toggleImage}) => {
+const IconCon = styled.div`
+  max-width: 25px;
+  max-height: 25px;
+  margin-right: 25px;
+`;
 
-    function toggleImage() {
-        var img1 = "/icons/heart_outline.svg";
-        var img2 = "/icons/heart.svg";
+class Likes extends React.Component {
+
+  constructor(props){
+
+    super(props);
+    this.state ={
+      likes: 120,
+      updated: false
+    }
+    this.updateLikes = this.updateLikes.bind(this);
+  }
+
+  updateLikes() {
+
+    if(!this.state.updated) {
+      this.setState((prevState, props) => {
         
-        var imgElement = document.getElementById('toggleImage');
-     
-        imgElement.src = (imgElement.src === img1)? img2 : img1;
-     }
+        return {
+          likes: prevState.likes + 1,
+          updated: true
+        };
+      });
+    } else {
 
-  return (
-    <Icon 
-        src="/icons/heart_outline.svg" id="toggleImage" onClick="toggleImage();" >
-    </Icon>
-  );
-};
+      this.setState((prevState, props) => {
+        return {
+          likes: prevState.likes - 1,
+          updated: false
+        };
+      });
+    }
+  }
 
-LikeButton.defaultProps = {
-};
+  render(){
+    
+    return(
+      <Container>
+        <IconCon onClick={this.updateLikes}>
+          <LikesIcon />
+        </IconCon>
+          <h4>{this.state.likes} likes</h4>
+      </Container>
+    );
+  }
+}
 
-export default LikeButton;
+export default Likes;

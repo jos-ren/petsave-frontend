@@ -6,4 +6,5 @@ export default {
   component: ConfirmBox
 }; 
 
-export const PostConfirm = () => <ConfirmBox />;
+export const PostConfirm = () => <ConfirmBox reMove1="false" />;
+export const LogoutConfirm = () => <ConfirmBox reMove2="false" text="Are you sure?" />;
