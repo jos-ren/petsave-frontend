@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import About from 'pages/about';
 import Login from 'pages/login';
 import AddPost from 'pages/addPost';
+import EditPost from 'pages/editProfile';
+import Register from 'pages/register';
 
 function App() {
   return <div>
@@ -19,6 +21,12 @@ function App() {
         </Route>
         <Route exact path="/addpost">
           <AddPost />
+        </Route>
+        <Route exact path="/editProfile">
+          <EditPost />
+        </Route>
+        <Route exact path="/register">
+          <Register />
         </Route>
       </Switch>
     </Router>
