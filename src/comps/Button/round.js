@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
     width: 100%;
+    display: ${props => props.displaymsg ? props.displaymsg : ""};
 `;
 
 const ButtonBox = styled.button`
@@ -21,10 +22,10 @@ const Icon = styled.img`
     height: auto;
 `;
 
-const RoundButton = ({ imgurl, onClick, bgcolor}) => {
+const RoundButton = ({ imgurl, onClick, bgcolor, displaymsg}) => {
 
   return (
-    <Container >
+    <Container displaymsg={displaymsg}>
       <ButtonBox
       bgcolor={bgcolor}
       onClick={onClick}
@@ -39,7 +40,8 @@ RoundButton.defaultProps = {
   text: "create account",
   bgcolor: "#000",
   imgurl: "/icons/mail.svg",
-  onClick:()=>{}
+  onClick:()=>{},
+  displaymsg: "flex"
 };
 
 export default RoundButton;

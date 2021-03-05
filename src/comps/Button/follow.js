@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  margin: ${props=>props.margin ? props.margin : null}
+  margin: ${props=>props.margin ? props.margin : null};
+  display: ${props => props.displayfollow ? props.displayfollow : ""};
 `;
 
 const ButtonBox = styled.button`
@@ -33,7 +34,7 @@ const Text = styled.h3`
   text-transform: capitalize;
 `;
 
-const FollowButton = ({onClick, margin, disable, bgcolor}) => {
+const FollowButton = ({onClick, margin, disable, bgcolor, displayfollow}) => {
     const [disabled, setDisabled] = useState(false);
     const [text, setText] = useState("follow");
 
@@ -47,7 +48,7 @@ const FollowButton = ({onClick, margin, disable, bgcolor}) => {
     }
 
   return (
-    <Container margin={margin}>
+    <Container margin={margin} displayfollow={displayfollow}>
       <ButtonBox
       bgcolor={bgcolor}
       disable={disabled}
@@ -66,7 +67,8 @@ FollowButton.defaultProps = {
   margin: null,
   bgcolor: "#000",
   disable: false,
-  onClick:()=>{}
+  onClick:()=>{},
+  displayfollow: "flex"
 };
 
 export default FollowButton;

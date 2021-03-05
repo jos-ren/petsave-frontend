@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Container = styled.div`
 display: flex;
 flex-direction: row;
-min-width: 300px;
-max-width: 600px;
+min-width: 100%;
+max-width: 100%;
 height: auto;
 `;
 
@@ -34,6 +34,8 @@ width: 100%;
 height:${props=>props.height ? props.height : "220px"};
 border-radius: 16px;
 margin-bottom: 10px;
+cursor: pointer;
+border: none;
     .img{
         width: 100%;
         height: 100%;
