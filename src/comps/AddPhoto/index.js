@@ -12,6 +12,8 @@ max-height: ${props=>props.height ? props.height : "366px"};
 min-height: ${props=>props.height ? props.height : "366px"};
 border-radius: 36px;
 background-color: #54BAF3;
+cursor: pointer;
+margin: ${props=>props.margin ? props.margin : "24px"};
 `;
 
 const AddPhoto = ({width, height, onAddPhotoClick}) => {
@@ -23,7 +25,7 @@ const AddPhoto = ({width, height, onAddPhotoClick}) => {
     }}>
         <img src='/icons/add.svg' fill="#FFFFFF" height="65px" width="65px" onClick={()=>{
         onAddPhotoClick(uploadClick)
-        console.log(uploadClick);
+        console.log(uploadClick) ;
     }}/>
 
     </Container>
