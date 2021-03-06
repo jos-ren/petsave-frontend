@@ -1,32 +1,42 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {useParams, useHistory} from 'react-router-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import UserProfile from 'pages/userprofile';
+import { useHistory } from 'react-router-dom';
 
 const Container = styled.div`
 display: flex;
-flex-direction: row;
+flex-direction:column;
+justify-content: center;
+align-items: center;
+height: 75px;
+width: 100%;
+background-color:white;
+// padding: 15px 0px 15px 0px;
+// background-color: #FFFFFF;
+position:absolute;
+bottom:0px;
+right:0px;
+filter: drop-shadow(0px -1px 20px rgba(0, 0, 0, 0.1));
+`;
+
+const Box = styled.div`
+display: flex;
 justify-content: space-around;
-min-width: 414px;
-max-width: 100%;
-height: 30px;
-padding: 15px 60px 15px 60px;
-background-color: #FFFFFF;
+align-items: center;
+width: 100%;
+height: 50px;
 `;
 
 const AddButton = styled.div`
 position: relative;
-top: -5px;
 display: flex;
 justify-content: center;
 align-items: center;
-min-height: 40px;
-max-height: 40px;
-min-width: 40px;
-max-width: 40px;
+min-height: 50px;
+max-height: 50px;
+min-width: 50px;
+max-width: 50px;
 background-color: #51C5F1;
-border-radius: 12px;
+border-radius: 20px;
 cursor: pointer;
 border: none;
 `;
@@ -38,54 +48,76 @@ min-height: 30px;
 max-height: 30px;
 cursor: pointer;
 border: none;
+margin-left:36px;
+margin-right:36px;
+display: flex;
+justify-content: center;
+align-items: center;
+`;
+
+const Gap = styled.div`
+    height: 80px;
+`;
+
+const Line = styled.div`
+    width: 414px;;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position:relative;
+    top:-13px;
 `;
 
 
-const NavBar = ({home, profile, onHomeClick, profileIcon, onProfileClick}) => {
+const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => {
 
     const history = useHistory();
-    
-    const [homeClick, setHomeClick] = useState(false); 
+
+    const [homeClick, setHomeClick] = useState(false);
     const [profileClick, setProfileClick] = useState(false);
 
-    return <Router>
-    
-    <Container>
-            {/* When user clicks the home_outline icon, the container will change the icon to home (filled) */}
-            <Link to="/">
-                <IconCont onChange={(e)=>{
-                    setHomeClick(); 
-                }}>
-                    <img onClick={()=>{
-                        onHomeClick(homeClick)
-                        console.log(homeClick);
+    return <div>
+
+        <Gap />
+        <Container>
+            <Line />
+            <Box>
+                {/* When user clicks the home_outline icon, the container will change the icon to home (filled) */}
+                <IconCont onClick={() => {
+                    history.push("/home")
+                }}
+                    onChange={(e) => {
+                        setHomeClick();
+                    }}>
+                    <img onClick={() => {
                     }} name="home" src='/icons/home_outline.svg' />
                 </IconCont>
-            </Link>
 
-            <AddButton>
-                    <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" />
-            </AddButton>
-
-            {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
-            <Link to="/userprofile">
-                <IconCont onChange={(e)=>{
-                    setProfileClick(); 
+                <AddButton onClick={() => {
+                    history.push("/addpost")
                 }}>
-                    <img onClick={()=>{
-                        // history.push("/userprofile");
+                    <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" />
+                </AddButton>
+
+                {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
+                <IconCont onClick={() => {
+                    history.push("/userprofile")
+                }}
+                    onChange={(e) => {
+                        setProfileClick();
+                    }}>
+                    <img onClick={() => {
                     }} name="profile" src={profileIcon} />
                 </IconCont>
-            </Link>
+            </Box>
         </Container>
-        </Router>
+    </div>
 }
 
 NavBar.defaultProps = {
-    onHomeClick:()=>{},
-    onProfileClick:()=>{},
+    onHomeClick: () => { },
+    onProfileClick: () => { },
     disable: false,
-    profileIcon:"/icons/profile_outline.svg"
+    profileIcon: "/icons/profile_outline.svg"
 }
 
-export default NavBar;    
+export default NavBar;

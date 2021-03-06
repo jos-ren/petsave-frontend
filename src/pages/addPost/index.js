@@ -25,7 +25,7 @@ function AddPost() {
         {popup ? <Backdrop /> : null }
         {confirm ? <ConfirmBox reMove1="false" /> : null }
         
-        <TopNav />
+        <TopNav text="Add Post" displayr="none" iconleft="/icons/back_outline.svg" />
         <AddPhoto />
         <MultiLineInput header="Caption" />
         <Button margin="12px" text= "Create Post" 

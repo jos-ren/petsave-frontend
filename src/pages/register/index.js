@@ -21,7 +21,7 @@ function Register() {
         <Input header="Password" placeholder="Enter your new password" />
         <Button margin="12px" text= "Create Account" 
             onClick={()=>{
-                history.push("/myProflie")
+                history.push("/home")
             }}
         />
       </div>

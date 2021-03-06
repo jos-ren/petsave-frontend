@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import LikeButton from "../Button/like"
+import LikeButton from "../Button/like";
+import { useHistory } from 'react-router-dom';
 
-const Container = styled.div`
+const PostBox = styled.div`
 margin:0px 26px;
 `;
 
@@ -47,31 +48,46 @@ const Comment = styled.img`
 `;
 
 const Line = styled.div`
-    width: auto;
+    width: 414px;
     height: 0.1px;
     background-color: rgba(0, 0, 0, 0.1);
     margin:12px 0 0 0;
+    display: ${props => props.displayline ? props.displayline : ""};
 `;
 
-const SinglePost = ({ likenumber, commentimg, avatarimg, postimg, caption, username }) => {
-    return <Container>
-        <ProfileBox>
-            <Avatar>
-                <img src={avatarimg} />
-            </Avatar>
-            <h3>{username}</h3>
-        </ProfileBox>
-        <ImgBox>
-            <img src={postimg} />
-        </ImgBox>
-        <InteractBox>
-            <LikeButton />
-            <Comment src={commentimg} />
-            <h4>{likenumber} likes</h4>
-        </InteractBox>
-        <h6>{caption}</h6>
-        <Line></Line>
-    </Container>
+const SinglePost = ({ likenumber, commentimg, avatarimg, postimg, caption, username, displayline }) => {
+
+    const history = useHistory();
+
+    return <div>
+        <PostBox>
+            <ProfileBox
+                onClick={() => {
+                    history.push("/profile")
+                }}
+            >
+                <Avatar>
+                    <img src={avatarimg} />
+                </Avatar>
+                <h3>{username}</h3>
+            </ProfileBox>
+            <ImgBox
+                onClick={() => {
+                    history.push("/post")
+                }}>
+                <img src={postimg} />
+            </ImgBox>
+            <InteractBox>
+                <LikeButton />
+                <Comment src={commentimg} onClick={() => {
+                    history.push("/post")
+                }} />
+                <h4>{likenumber} likes</h4>
+            </InteractBox>
+            <h6>{caption}</h6>
+        </PostBox>
+        <Line displayline={displayline} />
+    </div>
 }
 
 SinglePost.defaultProps = {
@@ -81,6 +97,7 @@ SinglePost.defaultProps = {
     postimg: "/img/duck.jpg",
     caption: "this is an example caption which will go under each post to show what a caption will eventually look like",
     username: "Alveus Sanctuary",
+    displayline: "flex"
 };
 
 export default SinglePost;

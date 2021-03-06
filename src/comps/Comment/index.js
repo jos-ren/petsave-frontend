@@ -6,8 +6,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 height: auto;
-padding: 20px 30px 15px 30px;
-background-color: #FFFFFF;
+padding: 0px 24px 0px 24px;
 `;
 
 const InnerCont = styled.div`
@@ -20,7 +19,7 @@ max-height: 36px;
 min-height: 36px;
 max-width: 36px;
 min-width: 36px;
-background-color: #DAB;
+padding:12px 0px 0px 0px;
 border-radius: 50%;
     .prof_img{
         width: 100%;
@@ -30,52 +29,50 @@ border-radius: 50%;
     }
 `;
 
-const UserName = styled.div`
-font-size: 14pt;
-font-weight: bold;
-font-family: Inter;
-color: #000000;
-padding:0px 20px 10px 20px;
+const UserName = styled.h5`
+padding:12px 0px 6px 12px;
 `;
 
 const UserComment = styled.div`
-font-size: 14pt;
-font-weight: semi-bold;
+padding:0px 0px 12px 12px;
 font-family: Inter;
-color: #808080;
-padding: 0px 20px 10px 20px;
-max-width: 500px;
-min-width: 300px;
+font-size: 14px;
+color: #000000;
 `;
 
-const Divider = styled.div`
-
-display: flex;
-border-bottom: 1px solid #C1C1C1;
-max-width: 570px;
-min-width: 350px;
+const Line = styled.div`
+    width: 414px;
+    height: 0.1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: ${props => props.displayline ? props.displayline : ""};
 `;
 
 
-const Comment = ({}) => {
+const Comment = ({ username, comment, pfpic, displayline }) => {
 
-    return <Container>
-        <InnerCont>
-            <div className="avatar_block">
-                <AvatarIcon>
-                    <img className="prof_img" src='img/profile.jpg' />
-                </AvatarIcon>
-            </div>
-            <div>
-                <UserName>Maya Higa</UserName>
-                <UserComment>Wow, really an incredible story... It’s great to see some of the amazing work you are all doing at Alveus!</UserComment>
-            </div>
-        </InnerCont>
-        <Divider />
-    </Container>
+    return <div>
+        <Container>
+            <InnerCont>
+                <div className="avatar_block">
+                    <AvatarIcon>
+                        <img className="prof_img" src={pfpic} />
+                    </AvatarIcon>
+                </div>
+                <div>
+                    <UserName>@{username}</UserName>
+                    <UserComment>{comment}</UserComment>
+                </div>
+            </InnerCont>
+        </Container>
+        <Line displayline={displayline} />
+    </div>
 }
 
 Comment.defaultProps = {
+    pfpic: 'img/profile.jpg',
+    username: "mayahiga",
+    comment: "Wow, really an incredible story... It’s great to see some of the amazing work you are all doing at Alveus!",
+    displayline: "flex"
 }
 
-export default Comment;    
+export default Comment;

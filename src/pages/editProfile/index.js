@@ -33,7 +33,7 @@ function EditPost() {
         <Input header="Password" placeholder="Enter your new password" />
         <Button margin="12px" text= "Save" bgcolor="#54BAF3" disable="true" 
             onClick={()=>{
-                history.push("/myProflie")
+                history.push("/userprofile")
             }}
         />
         <Button margin="12px" text= "Log Out" disable="true" 
