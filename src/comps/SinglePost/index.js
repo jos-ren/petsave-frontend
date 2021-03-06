@@ -54,7 +54,7 @@ const Comment = styled.img`
 `;
 
 const Line = styled.div`
-    width: 414px;
+    width: 100%;
     height: 0.1px;
     background-color: rgba(0, 0, 0, 0.1);
     margin:12px 0 0 0;

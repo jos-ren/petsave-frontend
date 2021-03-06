@@ -60,7 +60,7 @@ const Gap = styled.div`
 `;
 
 const Line = styled.div`
-    width: 414px;;
+    width: 100%;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
     position:relative;
