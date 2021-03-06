@@ -11,6 +11,7 @@ const IconCon = styled.div`
   max-width: 25px;
   max-height: 25px;
   margin-right: 6px;
+  cursor: pointer;
 `;
 
 class Likes extends React.Component {

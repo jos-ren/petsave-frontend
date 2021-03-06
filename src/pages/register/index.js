@@ -13,7 +13,7 @@ function Register() {
 
     return (
       <div className="page">
-        <TopNav />
+        <TopNav displayr="none"/>
         <AddPhoto />
         <Input />
         <Input header="Email" placeholder="Enter your new email" />

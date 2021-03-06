@@ -11,6 +11,9 @@ const ProfileBox = styled.div`
 height:64px;
 display:flex;
 align-items:center;
+h3{
+    cursor: pointer;
+}
 `;
 
 const Avatar = styled.div`
@@ -27,9 +30,11 @@ const ImgBox = styled.div`
 object-fit: contain;
 img{
     border-radius:24px;
-    width:366px;
+    width:100%;
     min-height:244px;
     max-height:458px;
+    object-fit: cover;
+    cursor:pointer;
 }
 `;
 
@@ -45,6 +50,7 @@ const InteractBox = styled.div`
 const Comment = styled.img`
     width: 24px;
     height: 24px;
+    cursor: pointer;
 `;
 
 const Line = styled.div`
