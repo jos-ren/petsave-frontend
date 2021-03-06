@@ -35,6 +35,7 @@ const IconBoxLeft = styled.div`
     width:72px;
     position:absolute;
     top:24px;
+    cursor:pointer;
 `;
 
 const IconBoxRight = styled.div`
@@ -46,6 +47,7 @@ const IconBoxRight = styled.div`
     position:absolute;
     top:24px;
     right:0px;
+    cursor:pointer;
 `;
 
 const Icon = styled.img`

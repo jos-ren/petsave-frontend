@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Container = styled.div`
+width: 100%;
+`;
+
 const InputDiv = styled.input`
     height: 50px;
-    width: 366px;
+    width: 100%;
     background: #F8FAFA;
     border: 0.25px solid rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
@@ -24,10 +28,10 @@ const InputDiv = styled.input`
 `;
 
 const Input = ({ header, id, placeholder, type }) => {
-    return <div>
+    return <Container>
         <h3> {header} </h3>
         <InputDiv type={type} placeholder={placeholder} id={id} />
-    </div>
+    </Container>
 };
 
 Input.defaultProps = {

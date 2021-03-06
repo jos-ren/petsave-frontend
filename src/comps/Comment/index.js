@@ -19,6 +19,7 @@ max-height: 36px;
 min-height: 36px;
 max-width: 36px;
 min-width: 36px;
+cursor: pointer;
 padding:12px 0px 0px 0px;
 border-radius: 50%;
     .prof_img{
@@ -31,6 +32,7 @@ border-radius: 50%;
 
 const UserName = styled.h5`
 padding:12px 0px 6px 12px;
+cursor: pointer;
 `;
 
 const UserComment = styled.div`
