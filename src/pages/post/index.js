@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from 'react-router-dom';
-import axios from "axios";
+import React from "react";
 import styled from 'styled-components';
 import SinglePost from "comps/SinglePost";
 import NavBar from "comps/NavBar";
@@ -25,6 +23,7 @@ function Post() {
         <PostBox>
             <SinglePost displayline="none" />
         </PostBox>
+         {/* real comments will be displayed once we have our db up */}
         <Comment />
         <Comment />
         <Comment />

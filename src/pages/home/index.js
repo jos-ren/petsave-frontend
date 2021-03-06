@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from 'react-router-dom';
-import axios from "axios";
+import React from "react";
 import styled from 'styled-components';
 import SinglePost from "comps/SinglePost";
 import NavBar from "comps/NavBar";
@@ -17,6 +15,7 @@ function Home() {
 
     return <div>
         <TopNav displaylogo="true" displayr="none" displayl="none" text="" />
+        {/* real posts will be displayed once we have our db up */}
         <SinglePost />
         <SinglePost />
         <SinglePost />
