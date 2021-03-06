@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {useParams, useHistory} from 'react-router-dom';
-import axios from "axios";
-
+import React from "react";
 import TopNav from "comps/TopNav";
 import NavBar from "comps/NavBar";
 import ProfileInfo from "comps/ProfileInfo";
 import HomeFeed from "comps/HomeFeed";
-import Button from 'comps/Button/default';
 
 function UserProfile ({}) {
-    const history = useHistory();
 
     return (
         <div className="profile_page">

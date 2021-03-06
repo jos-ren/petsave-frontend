@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+
+const Gap = styled.div`
+    height: 88px;
+`;
 
 const Container = styled.div`
     height: 88px;
     width: 100%;
     background-color:white;
     filter: drop-shadow(0px 1px 30px rgba(0, 0, 0, 0.05));
+    position:absolute;
+    top:0px;
+    right:0px;
 `;
 
 const Spacer = styled.div`
@@ -47,7 +55,7 @@ const Icon = styled.img`
 
 const Line = styled.div`
     width: auto;
-    height: 0.1px;
+    height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
 `;
 
@@ -57,20 +65,34 @@ const Logo = styled.img`
 `;
 
 const TopNav = ({ iconleft, iconright, text, logo, displayr, displayl, displaylogo }) => {
-    return <Container>
-        <Spacer />
-        <NavBox>
-            <h2>{text}</h2>
-            <Logo src={logo} displaylogo={displaylogo} />
-        </NavBox>
-        <IconBoxLeft displayl={displayl}>
-            <Icon src={iconleft}></Icon>
-        </IconBoxLeft>
-        <IconBoxRight displayr={displayr}>
-            <Icon src={iconright}></Icon>
-        </IconBoxRight>
-        {/* <Line /> */}
-    </Container>
+
+    const history = useHistory();
+
+    return <div>
+        <Gap />
+        <Container>
+            <Spacer />
+            <NavBox>
+                <h2>{text}</h2>
+                <Logo src={logo} displaylogo={displaylogo} />
+            </NavBox>
+            <IconBoxLeft displayl={displayl}
+                onClick={() => {
+                    history.goBack();
+                }}
+            >
+                <Icon src={iconleft}></Icon>
+            </IconBoxLeft>
+            <IconBoxRight displayr={displayr}
+                onClick={() => {
+                    history.push("/editprofile")
+                }}
+            >
+                <Icon src={iconright}></Icon>
+            </IconBoxRight>
+            <Line />
+        </Container>
+    </div>
 }
 
 TopNav.defaultProps = {

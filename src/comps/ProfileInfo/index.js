@@ -1,5 +1,4 @@
-import { findRenderedComponentWithType } from "react-dom/test-utils";
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import FollowButton from "comps/Button/follow";
 import RoundButton from "comps/Button/round";
@@ -22,21 +21,11 @@ const Top = styled.div`
     width: 85%;
 `
 
-// const Image = styled.div`
-//     border-radius: 50%;
-//     width: 100px;
-//     height: 100px;
-//     // background-image: url(${props=>props.imgurl ? props.imgurl : "/icon/default_profile.svg"});
-//     background-image: url("/icons/default_profile.svg"};
-//     background-repeat: no-repeat;
-//     background-position: center;
-//     background-size: cover; 
-// `;
-
 const Image = styled.img`
     border-radius: 50%;
     width: 100px;
     height: 100px;
+    object-fit: cover;
 `;
 
 const ButtonBox = styled.div`
