@@ -10,6 +10,7 @@ const Container = styled.div`
 const IconCon = styled.div`
   max-width: 25px;
   max-height: 25px;
+  margin-right: 6px;
 `;
 
 class Likes extends React.Component {
@@ -52,6 +53,7 @@ class Likes extends React.Component {
         <IconCon onClick={this.updateLikes}>
           <LikesIcon />
         </IconCon>
+          <h4>{this.state.likes} likes</h4>
       </Container>
     );
   }

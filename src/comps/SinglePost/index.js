@@ -55,7 +55,7 @@ const Line = styled.div`
     display: ${props => props.displayline ? props.displayline : ""};
 `;
 
-const SinglePost = ({ likenumber, commentimg, avatarimg, postimg, caption, username, displayline }) => {
+const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline }) => {
 
     const history = useHistory();
 
@@ -69,7 +69,7 @@ const SinglePost = ({ likenumber, commentimg, avatarimg, postimg, caption, usern
                 <Avatar>
                     <img src={avatarimg} />
                 </Avatar>
-                <h3>{username}</h3>
+                <h3>@{username}</h3>
             </ProfileBox>
             <ImgBox
                 onClick={() => {
@@ -78,25 +78,26 @@ const SinglePost = ({ likenumber, commentimg, avatarimg, postimg, caption, usern
                 <img src={postimg} />
             </ImgBox>
             <InteractBox>
-                <LikeButton />
                 <Comment src={commentimg} onClick={() => {
                     history.push("/post")
                 }} />
-                <h4>{likenumber} likes</h4>
+                <LikeButton />
             </InteractBox>
-            <h6>{caption}</h6>
+            <h6 onClick={() => {
+                history.push("/post")
+            }}
+            >{caption}</h6>
         </PostBox>
         <Line displayline={displayline} />
     </div>
 }
 
 SinglePost.defaultProps = {
-    likenumber: 2379,
     commentimg: "/icons/comment_outline.svg",
     avatarimg: "/img/kitty.jpg",
-    postimg: "/img/duck.jpg",
+    postimg: "/img/cat.jpg",
     caption: "this is an example caption which will go under each post to show what a caption will eventually look like",
-    username: "Alveus Sanctuary",
+    username: "alveus_sanctuary",
     displayline: "flex"
 };
 

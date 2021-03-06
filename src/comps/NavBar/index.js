@@ -56,7 +56,7 @@ align-items: center;
 `;
 
 const Gap = styled.div`
-    height: 80px;
+    height: 76px;
 `;
 
 const Line = styled.div`
