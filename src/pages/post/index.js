@@ -25,7 +25,7 @@ function Post() {
     // also get token!
 
     const createComment = async () => {
-        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/posts/comment",{
+        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
             content: comment
         });
         console.log(resp);

@@ -73,7 +73,7 @@ const Text = styled.h6`
     color: rgba(0, 0, 0, 0.5);
 `;
 
-const ProfileInfo = ({onClick, name, imgurl, numpost, numfollow, numfollower, displayfollow, displaymsg, username}) => {
+const ProfileInfo = ({onEmail, onFollow, name, imgurl, numpost, numfollow, numfollower, displayfollow, displaymsg, username}) => {
     return (
         <Container>
             <Top>
@@ -81,8 +81,8 @@ const ProfileInfo = ({onClick, name, imgurl, numpost, numfollow, numfollower, di
                 <Box>
                     <Name username={username}>{name}</Name>
                     <ButtonBox>
-                        <FollowButton displayfollow={displayfollow} />
-                        <RoundButton displaymsg={displaymsg} onClick={onClick}/>
+                        <FollowButton displayfollow={displayfollow} onClick={onFollow} />
+                        <RoundButton displaymsg={displaymsg} onClick={onEmail}/>
                     </ButtonBox>
                 </Box>
             </Top>
@@ -110,7 +110,8 @@ ProfileInfo.defaultProps = {
     numpost:24,
     numfollower:6732,
     numfollow:365,
-    onClick:()=>{},
+    onEmail:()=>{},
+    onFollow:()=>{},
     displayfollow: "flex",
     displaymsg: "flex",
     username: "24px"
