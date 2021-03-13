@@ -7,6 +7,7 @@ const Container = styled.div`
     min-width: 414px;
     min-height: 71px;
     background-color: white;
+    padding: 0px 10px;
     button {
         min-width: 55px;
         min-height: 40px;
@@ -15,9 +16,11 @@ const Container = styled.div`
         background-color: #54BAF3;
         color: white;
         box-sizing: border-box;
-        margin-left: 12px;
+        margin-left: 6px;
         cursor: pointer;
     }
+    // position: absolute;
+    // bottom: 75px;
 `;
 
 const Comment = styled.div`
@@ -33,16 +36,18 @@ const Comment = styled.div`
     }
 `;
 
-const CmtInput = ({onClick}) => {
+const CmtInput = ({onChange, onClick}) => {
     return <Container>
         <Comment>
-            <input type="text" />
+            <input type="text" onChange={onChange}/>
         </Comment>
-        <button><h5>Send</h5></button>
+        <button onClick={onClick}><h5>Send</h5></button>
     </Container>
 }
 
 CmtInput.defaultProps = {
+    onChange:()=>{},
+    onClick:()=>{}
 };
 
 export default CmtInput;

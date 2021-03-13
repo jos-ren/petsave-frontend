@@ -43,7 +43,7 @@ color: #000000;
 `;
 
 const Line = styled.div`
-    width: 414px;
+    min-width: 414px;
     height: 0.1px;
     background-color: rgba(0, 0, 0, 0.1);
     display: ${props => props.displayline ? props.displayline : ""};
