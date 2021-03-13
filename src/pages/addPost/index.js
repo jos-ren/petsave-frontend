@@ -14,10 +14,18 @@ function AddPost() {
 
     const [popup, setPopup] = useState(false);
     const [confirm, setConfirm] = useState(false);
-    const setBoth = () => {
-        setPopup(true);
-        setConfirm(true);
-      };
+
+    const [caption, setCaption] = useState("");
+    // capture user_id by token
+
+    const createPost = async () => {
+      const resp = await axios.post("https://petsave-backend.herokuapp.com/api/posts", {
+        caption: caption
+      });
+      console.log(resp);
+      setPopup(true);
+      setConfirm(true);
+    }
 
     return (
       <div className="page">
@@ -27,9 +35,9 @@ function AddPost() {
         
         <TopNav text="Add Post" displayr="none" iconleft="/icons/back_outline.svg" />
         <AddPhoto />
-        <MultiLineInput header="Caption" />
+        <MultiLineInput header="Caption" onChange={(e)=>setCaption(e.target.value)}/>
         <Button margin="12px" text= "Create Post" 
-            onClick={() => setBoth()} />
+            onClick={() => createPost()} />
         <Navbar />
       </div>
     );

@@ -23,16 +23,17 @@ const InputDiv = styled.textarea`
 }
 `;
 
-const MultiLineInput = ({ header, id }) => {
+const MultiLineInput = ({ header, id, onChange }) => {
     return <div>
         <h3> {header} </h3>
-        <InputDiv id={id} />
+        <InputDiv id={id} onChange={onChange} />
     </div>
 };
 
 MultiLineInput.defaultProps = {
     header: "Name",
     id: "name",
+    onChange:()=>{}
 };
 
 export default MultiLineInput;
