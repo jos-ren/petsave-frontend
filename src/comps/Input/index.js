@@ -27,18 +27,18 @@ const InputDiv = styled.input`
 }
 `;
 
-const Input = ({ header, id, placeholder, type }) => {
+const Input = ({ header, onChange, placeholder, type }) => {
     return <Container>
         <h3> {header} </h3>
-        <InputDiv type={type} placeholder={placeholder} id={id} />
+        <InputDiv type={type} placeholder={placeholder} onChange={onChange} />
     </Container>
 };
 
 Input.defaultProps = {
     header: "Name",
-    id: "name",
-    type:"text",
-    placeholder:"joesmith"
+    type: "text",
+    placeholder: "joesmith",
+    onChange: () => { }
 };
 
 export default Input;

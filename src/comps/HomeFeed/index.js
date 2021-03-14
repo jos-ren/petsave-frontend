@@ -47,7 +47,7 @@ border: none;
 
 
 
-const HomeFeed = ({ onFeedPhotoClick, }) => {
+const HomeFeed = ({ img }) => {
 
     const [feedClick, setFeedClick] = useState(false);
     const history = useHistory();
@@ -59,49 +59,12 @@ const HomeFeed = ({ onFeedPhotoClick, }) => {
                 // this will eventually lead to post:id once we have a backend
                 history.push("/post")
             }}>
-                <img className="img" src='img/bunny.jpg' onClick={() => {
-                    onFeedPhotoClick(feedClick)
-                    console.log(feedClick);
-                }} />
+                <img className="img" src={img} />
             </ImgCont>
 
-            <ImgCont onChange={(e) => {
-                setFeedClick(); //Opens the selected photo
-            }}>
-                <img className="img" src='img/duck.jpg' onClick={() => {
-                    onFeedPhotoClick(feedClick)
-                    console.log(feedClick);
-                }} />
-            </ImgCont>
         </Column1>
 
         <Column2>
-            <ImgCont height="120px" onChange={(e) => {
-                setFeedClick(); //Opens the selected photo
-            }}>
-                <img className="img" src='img/gecko.jpg' onClick={() => {
-                    onFeedPhotoClick(feedClick)
-                    console.log(feedClick);
-                }} />
-            </ImgCont>
-
-            <ImgCont onChange={(e) => {
-                setFeedClick(); //Opens the selected photo
-            }}>
-                <img className="img" src='img/fox.jpg' onClick={() => {
-                    onFeedPhotoClick(feedClick)
-                    console.log(feedClick);
-                }} />
-            </ImgCont>
-
-            <ImgCont height="120px" onChange={(e) => {
-                setFeedClick(); //Opens the selected photo
-            }}>
-                <img className="img" src='img/kittyrescue.jpg' onClick={() => {
-                    onFeedPhotoClick(feedClick)
-                    console.log(feedClick);
-                }} />
-            </ImgCont>
         </Column2>
 
     </Container>
@@ -109,7 +72,7 @@ const HomeFeed = ({ onFeedPhotoClick, }) => {
 
 HomeFeed.defaultProps = {
     height: null,
-    onFeedPhotoClick: () => { }
+    img: "img/bunny.jpg"
 }
 
 export default HomeFeed;
