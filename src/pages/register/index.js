@@ -10,15 +10,18 @@ import Input from "comps/Input";
 function Register() {
 
   const history = useHistory();
-  const [email, setEmail] = useState([]);
-  const [username, setUsername] = useState([]);
-  const [password, setPassword] = useState([]);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [pwd, setPwd] = useState("");
 
   const HandleRegister = async () => {
-    const resp = await axios.post("https://advdyn2021.herokuapp.com/users", { email: email, username: username, pwd: password });
+    const resp = await axios.post("https://petsave-backend.herokuapp.com/api/register", { email: email, username: username, pwd: pwd });
     console.log("response", resp);
     if (resp.data !== "Something went wrong registering user") {
+      // this part is based on what we add in database - how?
       history.push("/login")
+    } else {
+      history.push("/home")
     }
   }
 
@@ -28,11 +31,12 @@ function Register() {
       <AddPhoto />
       <Input header="Email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
       <Input header="Username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)} />
-      <Input header="Password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
+      <Input header="Password" placeholder="Enter your password" type="password" onChange={(e) => setPwd(e.target.value)} />
       <Button margin="12px" text="Create Account"
+      // figure out how to enable this button based on form completion
+      disable={email !== null}
         onClick={() => {
           HandleRegister();
-          // history.push("/home")
         }}
       />
     </div>
