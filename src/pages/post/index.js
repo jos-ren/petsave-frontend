@@ -26,6 +26,7 @@ function Post() {
 
     const [comment, setComment] = useState("");
     const [post, setPost] = useState({});
+    const [like, setLike] = useState("");
 
 
     const createComment = async () => {
@@ -34,6 +35,8 @@ function Post() {
         });
         console.log(resp);
     }
+
+
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id);
@@ -46,7 +49,20 @@ function Post() {
         } else {
             history.push("/login");
         }
+
+        //Get All Comments here? - Brittany
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/1/comments");
     }
+
+
+    //Brittany's questionable update Likes function lol
+    const LikePost = async () => {
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/posts/1/likes")
+        // Why is "likes" greyed out?
+        // likes: like + 1;
+    console.log(resp);
+};
+    
 
     useEffect(()=>{
         getData();
@@ -61,10 +77,19 @@ function Post() {
             avatarimg={post.profile_pic}
             postimg={post.img_src}
             likes={post.likes}
+            updateLikes={LikePost}
             />
         </PostBox>
-         {/* real comments will be displayed once we have our db up */}
-        <Comment />
+         {/* real comments will be displayed once we have our db up   (Brittany tried working on the comments below) */} 
+         {comments.map((o, i) => 
+            <Comment 
+                key={i}
+                content={o.content}
+                user_id={o.user_id}
+                post_id={o.post_id}
+                created={o.created}
+            >
+            </Comment>)}
         <CmtInput onChange={(e)=>setComment(e.target.value)} onClick={createComment}/>
         <NavBar />
     </Container>
