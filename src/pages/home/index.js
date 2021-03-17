@@ -19,14 +19,19 @@ function Home({setToken}) {
     const params = useParams();
     const history = useHistory();
 
+    const [posts, setPosts] = useState([]);
+
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts");
-        console.log(resp);
+        console.log(resp.data.posts)
 
         var token = await localStorage.getItem("token")
         if(token){
             axios.defaults.headers.common['Authorization'] = token;
-            }
+            setPosts([...resp.data.posts]);
+        } else {
+            history.push("/login");
+        }
 
         // const token = resp.data.token;
         // setToken(token);
@@ -43,15 +48,22 @@ function Home({setToken}) {
 
     return <div>
         <TopNav displaylogo="true" displayr="none" displayl="none" text="" />
-        {/* real posts will be displayed once we have our db up */}
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
-        <SinglePost />
+        {posts.map ((o, i) =>
+        <SinglePost
+        key={i} 
+        username={o.username}
+        caption={o.caption}
+        avatarimg={o.profile_pic}
+        postimg={o.img_src}
+        likes={o.likes}
+        gotoProfile={()=>{
+            history.push("/profile/"+o.id)
+        }}
+        gotoPost={()=>{
+            history.push("/post/"+i)
+        }}
+        />
+        )}
         <End>You've seen all posts</End>
         <NavBar onProfileClick={()=>{
             history.push("/userprofile/"+params.id)

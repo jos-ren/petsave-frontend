@@ -61,37 +61,28 @@ const Line = styled.div`
     display: ${props => props.displayline ? props.displayline : ""};
 `;
 
-const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline }) => {
+const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline, likes, gotoPost, gotoProfile }) => {
 
     const history = useHistory();
 
     return <div>
         <PostBox>
             <ProfileBox
-                onClick={() => {
-                    history.push("/profile")
-                }}
-            >
+                onClick={gotoProfile}>
                 <Avatar>
                     <img src={avatarimg} />
                 </Avatar>
                 <h3>@{username}</h3>
             </ProfileBox>
             <ImgBox
-                onClick={() => {
-                    history.push("/post")
-                }}>
+                onClick={gotoPost}>
                 <img src={postimg} />
             </ImgBox>
             <InteractBox>
-                <Comment src={commentimg} onClick={() => {
-                    history.push("/post")
-                }} />
-                <LikeButton />
+                <Comment src={commentimg} onClick={gotoPost} />
+                <LikeButton likes={likes}/>
             </InteractBox>
-            <h6 onClick={() => {
-                history.push("/post")
-            }}
+            <h6 onClick={gotoPost}
             >{caption}</h6>
         </PostBox>
         <Line displayline={displayline} />
@@ -104,7 +95,10 @@ SinglePost.defaultProps = {
     postimg: "/img/cat.jpg",
     caption: "this is an example caption which will go under each post to show what a caption will eventually look like",
     username: "alveus_sanctuary",
-    displayline: "flex"
+    displayline: "flex",
+    likes: 120,
+    gotoPost:()=>{},
+    gotoProfile:()=>{}
 };
 
 export default SinglePost;
