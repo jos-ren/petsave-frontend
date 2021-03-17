@@ -21,6 +21,7 @@ function App() {
     const user = token ? jwtDecode(token) : null;
     setUser(user);
   }, [token]);
+  
 
   return <div>
     <Router>
@@ -31,7 +32,7 @@ function App() {
         </Route>
 
         <Route exact path="/login">
-          <Login />
+          <Login setToken={setToken}/>
         </Route>
 
         <Route exact path="/register">
@@ -39,14 +40,14 @@ function App() {
         </Route>
 
         <Route exact path="/home">
-          <Home />
+          <Home setToken={setToken}/>
         </Route>
 
         <Route exact path="/profile">
           <Profile />
         </Route>
 
-        <Route exact path="/userprofile">
+        <Route exact path="/userprofile/:id">
           <UserProfile />
         </Route>
 
@@ -58,7 +59,7 @@ function App() {
           <AddPost />
         </Route>
 
-        <Route exact path="/editprofile">
+        <Route exact path="/editProfile">
           <EditPost />
         </Route>
 

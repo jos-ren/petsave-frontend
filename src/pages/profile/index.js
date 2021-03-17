@@ -15,6 +15,7 @@ function Profile({ }) {
     const [follower, setFollower] = useState(null);
     const [following, setFollowing] = useState(null);
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState({});
 
     const handleFollow = async () => {
         const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/users/" + params.id, {

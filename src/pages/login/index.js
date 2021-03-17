@@ -5,7 +5,7 @@ import axios from "axios";
 import Input from "comps/Input";
 import Button from 'comps/Button/default';
 
-function Login ({}) {
+function Login ({setToken}) {
     const history = useHistory();
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
@@ -21,11 +21,12 @@ function Login ({}) {
 
         if(resp.data !== "Unautorized" && resp.data !== "Incorrect credentials"){
             const token = resp.data.token;
-            // 1) store the token in the storage
-            sessionStorage.setItem("token", token);
-            // 2) connect token with axios header
-            axios.defaults.headers.common['Authorization'] = token;
-            // 3) redirect to the main page
+            setToken(token);
+            // // 1) store the token in the storage
+            // sessionStorage.setItem("token", token);
+            // // 2) connect token with axios header
+            // axios.defaults.headers.common['Authorization'] = token;
+            // // 3) redirect to the main page
             history.push("/home")
         } else {
             // update a state to show an error
