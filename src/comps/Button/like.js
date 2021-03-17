@@ -20,7 +20,7 @@ class Likes extends React.Component {
 
     super(props);
     this.state ={
-      likes: 120,
+      likes: props.likes,
       updated: false
     }
     this.updateLikes = this.updateLikes.bind(this);

@@ -61,7 +61,7 @@ const Line = styled.div`
     display: ${props => props.displayline ? props.displayline : ""};
 `;
 
-const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline }) => {
+const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline, likes }) => {
 
     const history = useHistory();
 
@@ -87,7 +87,7 @@ const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, display
                 <Comment src={commentimg} onClick={() => {
                     history.push("/post")
                 }} />
-                <LikeButton />
+                <LikeButton likes={likes}/>
             </InteractBox>
             <h6 onClick={() => {
                 history.push("/post")
@@ -104,7 +104,8 @@ SinglePost.defaultProps = {
     postimg: "/img/cat.jpg",
     caption: "this is an example caption which will go under each post to show what a caption will eventually look like",
     username: "alveus_sanctuary",
-    displayline: "flex"
+    displayline: "flex",
+    likes: 120
 };
 
 export default SinglePost;
