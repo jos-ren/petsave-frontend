@@ -49,12 +49,19 @@ function Home({setToken}) {
     return <div>
         <TopNav displaylogo="true" displayr="none" displayl="none" text="" />
         {posts.map ((o, i) =>
-        <SinglePost 
+        <SinglePost
+        key={i} 
         username={o.username}
         caption={o.caption}
         avatarimg={o.profile_pic}
         postimg={o.img_src}
         likes={o.likes}
+        gotoProfile={()=>{
+            history.push("/profile/"+o.id)
+        }}
+        gotoPost={()=>{
+            history.push("/post/"+i)
+        }}
         />
         )}
         <End>You've seen all posts</End>
