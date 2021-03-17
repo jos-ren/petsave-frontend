@@ -61,7 +61,7 @@ const Line = styled.div`
     display: ${props => props.displayline ? props.displayline : ""};
 `;
 
-const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline, likes, gotoPost, gotoProfile }) => {
+const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline, likes, gotoPost, gotoProfile, updateLikes }) => {
 
     const history = useHistory();
 
@@ -80,7 +80,7 @@ const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, display
             </ImgBox>
             <InteractBox>
                 <Comment src={commentimg} onClick={gotoPost} />
-                <LikeButton likes={likes}/>
+                <LikeButton likes={likes} onClick={updateLikes}/>
             </InteractBox>
             <h6 onClick={gotoPost}
             >{caption}</h6>
@@ -98,7 +98,8 @@ SinglePost.defaultProps = {
     displayline: "flex",
     likes: 120,
     gotoPost:()=>{},
-    gotoProfile:()=>{}
+    gotoProfile:()=>{},
+    updateLikes:()=>{}
 };
 
 export default SinglePost;
