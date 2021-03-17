@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from 'react-router-dom';
+import axios from "axios";
+
 import TopNav from "comps/TopNav";
 import NavBar from "comps/NavBar";
 import ProfileInfo from "comps/ProfileInfo";
 import HomeFeed from "comps/HomeFeed";
 
 function UserProfile ({}) {
+
+    const params = useParams();
+
+    const [user, setUser] = useState({});
+    const [name, setName] = useState("");
+
+    const getUserInfo = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id);
+        console.log("get data", resp);
+        console.log("params", params.id);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setUser({...resp.data.result[0]});
+            // console.log("token", token);
+            }
+    }
+
+    useEffect(()=>{
+        getUserInfo();
+    }, []);
 
     return (
         <div className="profile_page">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const Container = styled.div`
 display: flex;
@@ -71,6 +71,7 @@ const Line = styled.div`
 const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => {
 
     const history = useHistory();
+    const params = useParams();
 
     const [homeClick, setHomeClick] = useState(false);
     const [profileClick, setProfileClick] = useState(false);
@@ -99,9 +100,7 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
                 </AddButton>
 
                 {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
-                <IconCont onClick={() => {
-                    history.push("/userprofile")
-                }}
+                <IconCont onClick={onProfileClick}
                     onChange={(e) => {
                         setProfileClick();
                     }}>

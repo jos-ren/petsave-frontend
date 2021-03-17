@@ -87,7 +87,7 @@ const TopNav = ({ iconleft, iconright, text, logo, displayr, displayl, displaylo
             </IconBoxLeft>
             <IconBoxRight displayr={displayr}
                 onClick={() => {
-                    history.push("/editprofile")
+                    history.push("/editProfile")
                 }}
             >
                 <Icon src={iconright}></Icon>
