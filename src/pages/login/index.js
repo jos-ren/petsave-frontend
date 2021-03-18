@@ -11,6 +11,7 @@ function Login ({setToken}) {
     const [pwd, setPwd] = useState("");
 
     const [error, setError] = useState(null);
+    const [user, setUser] = useState("");
 
     const handleLogin = async () => {
         const resp = await axios.post("https://petsave-backend.herokuapp.com/api/login",{
@@ -25,7 +26,7 @@ function Login ({setToken}) {
             // // 1) store the token in the storage
             // sessionStorage.setItem("token", token);
             // // 2) connect token with axios header
-            // axios.defaults.headers.common['Authorization'] = token;
+            axios.defaults.headers.common['Authorization'] = token;
             // // 3) redirect to the main page
             history.push("/home")
         } else {
@@ -38,18 +39,21 @@ function Login ({setToken}) {
         <div className="page">
             <img src="/logo.svg" className="logo"/>
             <div className="login_input">
-                <Input header="Username"/>
-                <Input header="Password" type="password" placeholder="*********"/>
+                <Input header="Username" onChange={(e)=>setUsername(e.target.value)}/>
+                <Input header="Password" type="password" placeholder="*********" onChange={(e)=>setPwd(e.target.value)}/>
             </div>
             <div className="login_but">
                 <Button text="log in" bgcolor="#54BAF3"
-                onClick={handleLogin}
+                onClick={()=>{
+                    handleLogin();
+                    setUser(username);
+                }}
                 />
                 <div>
                     <p>Don't have an account?</p>
                     <Button text="register" disable={true}
                     onClick={()=>{
-                        history.push("/register")
+                        history.push("/register");
                     }}/>
                 </div>
             </div>

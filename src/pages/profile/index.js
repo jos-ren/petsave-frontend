@@ -26,21 +26,42 @@ function Profile({ }) {
     };
 
     const GetPosts = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/1/posts");
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id+"/posts");
         // if (resp.data !== "expired" && resp.data !== "no token") {
             // setPosts([...resp.data])
             // console.log("posts", resp);
         // } 
     }
 
+    const getUserData = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id);
+        // console.log(resp);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setUser({...resp.data.result[0]});
+        } else {
+            history.push("/login");
+        }
+    }
+
     useEffect(() => {
         GetPosts();
+        getUserData();
     }, [])
 
     return (
         <div className="profile_page">
-            <TopNav displayr='none' />
-            <ProfileInfo onFollow={handleFollow} />
+            <TopNav displayr='none' text={"@"+user.username} />
+            <ProfileInfo 
+            onFollow={handleFollow}
+            name={user.fullname}
+            imgurl={user.profile_pic}
+            numpost={user.numposts}
+            numfollower={user.fllwrs}
+            numfollow={user.fllwng}
+            />
             <HomeFeed />
             {posts.map((o, i) => <HomeFeed key={i} img={o.img_url}>
             </HomeFeed>)}

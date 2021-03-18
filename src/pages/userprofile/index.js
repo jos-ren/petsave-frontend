@@ -13,9 +13,10 @@ function UserProfile ({}) {
 
     const [user, setUser] = useState({});
     const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
 
     const getUserInfo = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id);
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.username);
         console.log("get data", resp);
         console.log("params", params.id);
 
