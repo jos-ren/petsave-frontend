@@ -20,6 +20,7 @@ function Home({setToken}) {
     const history = useHistory();
 
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState("");
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts");
@@ -40,6 +41,10 @@ function Home({setToken}) {
             // setToken(token);
             // console.log("token", token);
         // }
+    };
+
+    const getUserData = async () => {
+        const resp = await axios.get("")
     }
 
     useEffect(()=>{

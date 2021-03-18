@@ -24,19 +24,23 @@ function Post() {
     const params = useParams();
     const history = useHistory();
 
-    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState([]);
     const [post, setPost] = useState({});
     const [like, setLike] = useState("");
+    const [comment, setComment] = useState("");
 
 
-    const createComment = async () => {
-        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
-            content: comment
-        });
-        console.log(resp);
+    // const createComment = async () => {
+    //     const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
+    //         content: comment,
+    //         post_id: post.id
+    //     });
+    //     console.log(resp);
+    // };
+
+    const createComment = () => {
+        console.log(comment, post.id);
     }
-
-
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id);
@@ -49,9 +53,19 @@ function Post() {
         } else {
             history.push("/login");
         }
+    };
 
-        //Get All Comments here? - Brittany
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/1/comments");
+    const getComments = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/comments");
+        console.log(resp.data.comments);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setComments([...resp.data.comments]);
+        } else {
+            history.push("/login");
+        }
     }
 
 
@@ -66,6 +80,7 @@ function Post() {
 
     useEffect(()=>{
         getData();
+        getComments();
     }, [])
 
     return <Container>
@@ -78,19 +93,26 @@ function Post() {
             postimg={post.img_src}
             likes={post.likes}
             updateLikes={LikePost}
+            gotoProfile={()=>{
+                history.push("/profile/"+post.id)
+            }}
             />
         </PostBox>
          {/* real comments will be displayed once we have our db up   (Brittany tried working on the comments below) */} 
          {comments.map((o, i) => 
             <Comment 
                 key={i}
-                content={o.content}
+                comment={o.content}
                 user_id={o.user_id}
                 post_id={o.post_id}
                 created={o.created}
+                username={o.username}
+                pfpic={o.profile_pic}
             >
             </Comment>)}
-        <CmtInput onChange={(e)=>setComment(e.target.value)} onClick={createComment}/>
+        <CmtInput 
+        onChange={(e)=>setComment(e.target.value)}
+         onClick={createComment}/>
         <NavBar />
     </Container>
 }
