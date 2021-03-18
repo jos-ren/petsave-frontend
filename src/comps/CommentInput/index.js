@@ -33,6 +33,7 @@ const Comment = styled.div`
         box-sizing: border-box;
         box-shadow: 0px 0px 5px #C4C4C4;
         border-radius: 16px;
+        padding-left: 10px;
     }
 `;
 
