@@ -1,1 +1,1 @@
-simple backend for our react app
+a react app for animal lovers
