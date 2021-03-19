@@ -1,40 +1,54 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
+const React = require('react')
 
-const Container = styled.div`
+const Container = styled.label`
 display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-max-width: ${props=>props.width ? props.width : "366px"};
-min-width:${props=>props.width ? props.width : "366px"};
-max-height: ${props=>props.height ? props.height : "366px"};
-min-height: ${props=>props.height ? props.height : "366px"};
+width:366px;
+height:366px;
 border-radius: 36px;
 background-color: #54BAF3;
 cursor: pointer;
-margin: ${props=>props.margin ? props.margin : "24px"};
+margin: ${props => props.margin ? props.margin : "24px"};
 `;
 
-const AddPhoto = ({width, height, onAddPhotoClick}) => {
+const Photo = styled.img`
+width:366px;
+height:366px;
+border-radius: 36px;
+object-fit:cover;
+position:fixed;
+`;
 
-    const [uploadClick, setUploadClick] = useState(false); 
+const Plus = styled.img`
+width:65px;
+height:65px;
+`;
 
-    return <Container width={width} height={height} onChange={(e)=>{
-        setUploadClick(); //Changes when user uploads a photo
-    }}>
-        <img src='/icons/add.svg' fill="#FFFFFF" height="65px" width="65px" onClick={()=>{
-        onAddPhotoClick(uploadClick)
-        console.log(uploadClick) ;
-    }}/>
+class AddPhoto extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            file: null
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+        this.setState({
+            file: URL.createObjectURL(event.target.files[0])
+        })
+    }
 
-    </Container>
+    render() {
+        return (
+            <Container>
+                <input type="file" onChange={this.handleChange} hidden/>
+                <Plus src='/icons/add.svg' />
+                <Photo src={this.state.file} />
+            </Container>
+        );
+    }
 }
-
-AddPhoto.defaultProps = {
-    width: null,
-    height: null,
-    onAddPhotoClick:()=>{}
-}
-
 export default AddPhoto;

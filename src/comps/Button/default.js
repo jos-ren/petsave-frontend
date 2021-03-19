@@ -32,7 +32,7 @@ const Text = styled.h3`
   text-transform: capitalize;
 `;
 
-const Button = ({ text, onClick, margin, disable, bgcolor, width, height}) => {
+const Button = ({ text, onClick, margin, disable, bgcolor, width, height, type}) => {
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
@@ -42,6 +42,7 @@ const Button = ({ text, onClick, margin, disable, bgcolor, width, height}) => {
   return (
     <Container margin={margin}>
       <NormalButton
+      type={type}
       bgcolor={bgcolor}
       width={width}
       height={height}
