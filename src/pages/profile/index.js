@@ -40,8 +40,15 @@ function Profile({ }) {
 
     const GetPosts = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
-        console.log("posts", resp)
-        console.log("params", params.username)
+        console.log("posts", resp.data.posts);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setPosts([...resp.data.posts])
+        } else {
+            history.push("/login");
+    }
     }
 
     const getUserData = async () => {
