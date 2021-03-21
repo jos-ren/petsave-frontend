@@ -79,10 +79,11 @@ function Profile({ }) {
             numpost={user.numposts}
             numfollower={user.fllwrs}
             numfollow={user.fllwng}
-            />
-            <HomeFeed />
-            {posts.map((o, i) => <HomeFeed key={i} img={o.img_url}>
-            </HomeFeed>)}
+            /> 
+            {posts.map((o, i) => 
+            <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
+                
+            }}/>)}
             <NavBar />
         </div>
     )
