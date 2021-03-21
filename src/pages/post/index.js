@@ -27,6 +27,21 @@ function Post() {
 
     const [comments, setComments] = useState([]);
     const [post, setPost] = useState({});
+    const [likes, setLikes] = useState("");
+    const [comment, setComment] = useState("");
+
+
+    // const createComment = async () => {
+    //     const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
+    //         content: comment,
+    //         post_id: post.id
+    //     });
+    //     console.log(resp);
+    // };
+    
+    const updateLikes = () => {
+        console.log(likes, post.id);
+    }
     const [like, setLike] = useState("");
     const [content, setContent] = useState("");
 
@@ -67,18 +82,28 @@ function Post() {
     };
 
 
-    //Brittany's questionable update Likes function lol
-    const LikePost = async () => {
-        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/posts/1/likes")
-        // Why is "likes" greyed out?
-        // likes: like + 1;
-    console.log(resp);
+    //Brittany's questionable getLikes function lol
+    const getLikes = async () => {
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes");
+        // const likes = resp.data.likes;
+        // setLike(resp.data.likes + 1);
+        // return like;
+        console.log(resp);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setLikes([...resp.data.likes]);
+        } else {
+            history.push("/login");
+    }
 };
     
 
     useEffect(()=>{
         getData();
         getComments();
+        getLikes();
     }, [])
 
     return <Container>
@@ -90,13 +115,13 @@ function Post() {
             avatarimg={post.profile_pic}
             postimg={post.img_src}
             likes={post.likes}
-            updateLikes={LikePost}
+            updateLikes={updateLikes}
             gotoProfile={()=>{
                 history.push("/profile/"+post.id)
             }}
             />
         </PostBox>
-         {/* real comments will be displayed once we have our db up   (Brittany tried working on the comments below) */} 
+         {/* real comments will be displayed once we have our db up */} 
          {comments.map((o, i) => 
             <Comment 
                 key={i}
