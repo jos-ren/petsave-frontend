@@ -44,21 +44,23 @@ function UserProfile({ }) {
             axios.defaults.headers.common['Authorization'] = token;
             setUser({ ...resp.data.user[0] });
         } else {
-            history.push("/login")
+            history.push("/login");
         }
     }
 
     const updateData = async () => {
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/" + params.username, {
+            fullname: name,
+            username: username,
+            email: email,
+            pwd: pwd,
+            profile_pic: image
+        });
+        console.log("edited", resp);
+
         var token = await localStorage.getItem("token")
         if (token) {
-            const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/" + params.username, {
-                fullname: name,
-                username: username,
-                email: email,
-                pwd: pwd,
-                profile_pic: image
-            });
-            console.log("edited", resp);
+            axios.defaults.headers.common['Authorization'] = token;
         } else {
             history.push("/login")
         }
@@ -100,7 +102,7 @@ function UserProfile({ }) {
                     onChange={(e) => setPwd(e.target.value)} />
                 <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
                     onClick={() => {
-                        updateData(name, email, username, pwd);
+                        updateData();
                     }}
                 />
                 <Button margin="12px" text="Log Out" disable="true"
