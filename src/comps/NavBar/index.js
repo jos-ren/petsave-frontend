@@ -68,13 +68,13 @@ const Line = styled.div`
 `;
 
 
-const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => {
+const NavBar = ({ }) => {
 
     const history = useHistory();
     const params = useParams();
 
-    const [homeClick, setHomeClick] = useState(false);
-    const [profileClick, setProfileClick] = useState(false);
+    const [filled1, setFilled1] = useState(false);
+    const [filled2, setFilled2] = useState(false);
 
     return <div>
 
@@ -83,14 +83,12 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
             <Line />
             <Box>
                 {/* When user clicks the home_outline icon, the container will change the icon to home (filled) */}
-                <IconCont onClick={() => {
-                    history.push("/home")
-                }}
-                    onChange={(e) => {
-                        setHomeClick();
-                    }}>
+                <IconCont className={filled1 ? "fill" : "unfill"} >
                     <img onClick={() => {
-                    }} name="home" src='/icons/home_outline.svg' />
+                    setFilled1(true)
+                    history.push("/home")
+                    }}
+                    src={filled1 ? "/icons/home.svg" : "/icons/home_outline.svg"} />
                 </IconCont>
 
                 <AddButton onClick={() => {
@@ -100,12 +98,11 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
                 </AddButton>
 
                 {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
-                <IconCont onClick={onProfileClick}
-                    onChange={(e) => {
-                        setProfileClick();
-                    }}>
-                    <img onClick={() => {
-                    }} name="profile" src={profileIcon} />
+                <IconCont onClick={() => {
+                    history.push("/userprofile/"+ params.id)
+                    setFilled2(false)
+                }}>
+                    <img src={filled2 ? "/icons/profile.svg" : "/icons/profile_outline.svg"}/>
                 </IconCont>
             </Box>
         </Container>
@@ -113,10 +110,9 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
 }
 
 NavBar.defaultProps = {
-    onHomeClick: () => { },
-    onProfileClick: () => { },
+    filled1: false,
+    filled2: false,
     disable: false,
-    profileIcon: "/icons/profile_outline.svg"
 }
 
 export default NavBar;

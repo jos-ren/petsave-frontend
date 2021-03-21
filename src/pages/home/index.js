@@ -65,14 +65,12 @@ function Home({setToken}) {
             history.push("/profile/"+o.id)
         }}
         gotoPost={()=>{
-            history.push("/post/"+i)
+            history.push("/post/"+o.id)
         }}
         />
         )}
         <End>You've seen all posts</End>
-        <NavBar onProfileClick={()=>{
-            history.push("/userprofile/"+params.id)
-        }}/>
+        <NavBar filled1="true"/>
     </div>
 }
 

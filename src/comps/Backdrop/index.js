@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-min-width: 414px;
-//max-width: 600px;
-min-height: 896px;
-//max-height: 1000px;
+width: 100vw;
+height: 100vh;
 background-color: #000000;
 opacity: 65%;
 position: absolute;

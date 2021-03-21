@@ -16,7 +16,6 @@ const LikesIcon = () => {
 };
 
 LikesIcon.defaultProps = {
-    text: "Your post has been created!",
 };
 
 export default LikesIcon;

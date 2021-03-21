@@ -12,7 +12,7 @@ const NormalButton = styled.button`
   min-width: ${props=>props.width ? props.width : "366px"};
   min-height: ${props=>props.height ? props.height : "64px"};
   // background-color: #094D69;
-  background-color: ${props=>props.disable && props.bgcolor ? props.bgcolor : "#c4c4c4"};
+  background-color: ${props=>props.disable && props.bgcolor ? props.bgcolor : "#54BAF3"};
 
   border-radius: 10px;
 
