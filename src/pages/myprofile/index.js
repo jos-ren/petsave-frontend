@@ -36,8 +36,7 @@ function UserProfile ({}) {
         var token = await localStorage.getItem("token")
         if(token){
             axios.defaults.headers.common['Authorization'] = token;
-            setUser({...resp.data});
-            console.log("token", user);
+            setUser({...resp.data.user[0]});
             }
     }
 

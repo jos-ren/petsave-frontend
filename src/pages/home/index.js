@@ -20,7 +20,7 @@ function Home() {
     const history = useHistory();
 
     const [posts, setPosts] = useState([]);
-    const [user, setUser] = useState("");
+    const [username, setUsername] = useState("");
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts");
@@ -65,7 +65,7 @@ function Home() {
         postimg={o.img_src}
         likes={o.likes}
         gotoProfile={()=>{
-            history.push("/profile/"+o.id)
+            history.push("/profile/"+o.username)
         }}
         gotoPost={()=>{
             history.push("/post/"+o.id)
@@ -73,9 +73,7 @@ function Home() {
         />
         )}
         <End>You've seen all posts</End>
-        <NavBar onProfileClick={()=>{
-            history.push("/myprofile")
-        }}/>
+        <NavBar/>
     </div>
 }
 

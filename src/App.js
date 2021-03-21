@@ -43,7 +43,7 @@ function App() {
           <Home setToken={setToken}/>
         </Route>
 
-        <Route exact path="/profile/:id">
+        <Route exact path="/profile/:username">
           <Profile />
         </Route>
 
