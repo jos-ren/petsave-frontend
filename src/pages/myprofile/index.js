@@ -13,7 +13,7 @@ import Input from "comps/Input";
 import ConfirmBox from "comps/Confirm";
 import { LogoutConfirm } from "stories/Confirm.stories";
 
-function UserProfile ({}) {
+function UserProfile({ }) {
 
     const params = useParams();
     const history = useHistory();
@@ -24,13 +24,14 @@ function UserProfile ({}) {
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
     const [email, setEmail] = useState("");
-    const [img, setImg] = useState("");
+    const [imgurl, setImgurl] = useState(null);
+    const [image, setImage] = useState("");
 
     const [popup, setPopup] = useState(false);
     const [confirm, setConfirm] = useState(false);
     const setBoth = () => {
-      setPopup(true);
-      setConfirm(true);
+        setPopup(true);
+        setConfirm(true);
     };
 
     const getUserInfo = async () => {
@@ -38,9 +39,9 @@ function UserProfile ({}) {
         console.log("get data", resp);
 
         var token = await localStorage.getItem("token")
-        if(token){
+        if (token) {
             axios.defaults.headers.common['Authorization'] = token;
-            setUser({...resp.data.user[0]});
+            setUser({ ...resp.data.user[0] });
         } else {
             history.push("/login")
         }
@@ -48,76 +49,86 @@ function UserProfile ({}) {
 
     const updateData = async () => {
         var token = await localStorage.getItem("token")
-        if(token){
-        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/"+params.username, {
-            fullname: name,
-            username: username,
-            email: email,
-            pwd: pwd,
-            profile_pic: img
-        });
-        console.log("edited", resp);
-    } else {
-        history.push("/login")
+        if (token) {
+            const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/" + params.username, {
+                fullname: name,
+                username: username,
+                email: email,
+                pwd: pwd,
+                profile_pic: image
+            });
+            console.log("edited", resp);
+        } else {
+            history.push("/login")
+        }
     }
-}
     const logOutUser = async () => {
         var token = await localStorage.removeItem("token")
-            history.push("/login")
+        history.push("/login")
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getUserInfo();
     }, []);
 
-    if(location.pathname === "/myprofile/edit"){
-        return(
+    if (location.pathname === "/myprofile/edit") {
+        return (
             <div className="page">
 
-            {popup ? <Backdrop /> : null}
-            {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
+                {popup ? <Backdrop /> : null}
+                {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
 
-            <TopNav displayr="none" />
-            <AddPhoto />
-            <Input placeholder={user.fullname} 
-            onChange={(e)=>setName(e.target.value)}/>
-            <Input header="Email" placeholder={user.email} 
-            onChange={(e)=>setEmail(e.target.value)}/>
-            <Input header="Username" placeholder={user.username} 
-            onChange={(e)=>setUsername(e.target.value)} />
-            <Input header="Password" type="password" placeholder="Enter your new password" 
-            onChange={(e)=>setPwd(e.target.value)}/>
-            <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
-            onClick={() => {
-                updateData(name, email, username, pwd);
-            }}
-            />
-            <Button margin="12px" text="Log Out" disable="true"
-            onClick={() => {
-                setBoth();}} />
+                <TopNav displayr="none" />
+                <AddPhoto
+                    filename={image}
+                    onChange={
+                        e => {
+                            setImage(e.target.files[0])
+                            setImgurl(URL.createObjectURL(e.target.files[0]))
+                        }
+                    }
+                    image={imgurl}
+                />
+                <Input placeholder={user.fullname}
+                    onChange={(e) => setName(e.target.value)} />
+                <Input header="Email" placeholder={user.email}
+                    onChange={(e) => setEmail(e.target.value)} />
+                <Input header="Username" placeholder={user.username}
+                    onChange={(e) => setUsername(e.target.value)} />
+                <Input header="Password" type="password" placeholder="Enter your new password"
+                    onChange={(e) => setPwd(e.target.value)} />
+                <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
+                    onClick={() => {
+                        updateData(name, email, username, pwd);
+                    }}
+                />
+                <Button margin="12px" text="Log Out" disable="true"
+                    onClick={() => {
+                        setBoth();
+                    }} />
             </div>
         )
     } else {
         return (
-        <div className="profile_page">
-        <TopNav displayl='none' iconright='/icons/settings.svg' 
-        text={"@"+user.username}
-        onClick={()=>{
-            history.push("/myprofile/edit")
-        }}
-        />
-        <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg' 
-        name={user.fullname}
-        imgurl={user.profile_pic}
-        numpost={user.numposts}
-        numfollower={user.fllwrs}
-        numfollow={user.fllwng}
-        />
-        <HomeFeed />
-        <NavBar profileIcon='icons/profile.svg' />
+            <div className="profile_page">
+                <TopNav displayl='none' iconright='/icons/settings.svg'
+                    text={"@" + user.username}
+                    onClick={() => {
+                        history.push("/myprofile/edit")
+                    }}
+                />
+                <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
+                    name={user.fullname}
+                    imgurl={user.profile_pic}
+                    numpost={user.numposts}
+                    numfollower={user.fllwrs}
+                    numfollow={user.fllwng}
+                />
+                <HomeFeed />
+                <NavBar profileIcon='icons/profile.svg' />
 
-    </div>
-    )
+            </div>
+        )
     }
 };
 

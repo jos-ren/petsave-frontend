@@ -11,6 +11,7 @@ height:366px;
 border-radius: 36px;
 background-color: #54BAF3;
 cursor: pointer;
+position:relative;
 margin: ${props => props.margin ? props.margin : "24px"};
 `;
 
@@ -19,12 +20,13 @@ width:366px;
 height:366px;
 border-radius: 36px;
 object-fit:cover;
-position:fixed;
+position:absolute;
 `;
 
 const Plus = styled.img`
 width:65px;
 height:65px;
+position:absolute;
 `;
 
 const AddPhoto = ({filename, onChange, image}) => {

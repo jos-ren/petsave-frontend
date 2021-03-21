@@ -14,6 +14,8 @@ function EditPost() {
   const history = useHistory();
   const [popup, setPopup] = useState(false);
   const [confirm, setConfirm] = useState(false);
+
+
   const setBoth = () => {
     setPopup(true);
     setConfirm(true);
@@ -26,7 +28,16 @@ function EditPost() {
       {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" /> : null}
 
       <TopNav displayr="none" />
-      <AddPhoto />
+      {/* <AddPhoto
+        filename={image}
+        onChange={
+          e => {
+            setImage(e.target.files[0])
+            setImgurl(URL.createObjectURL(e.target.files[0]))
+          }
+        }
+        image={imgurl}
+      /> */}
       <Input />
       <Input header="Email" placeholder="Enter your new email" />
       <Input header="Username" placeholder="Enter your new username" />
