@@ -14,7 +14,7 @@ const End = styled.h3`
     align-items: center;
 `;
 
-function Home({setToken}) {
+function Home() {
 
     const params = useParams();
     const history = useHistory();
@@ -43,12 +43,15 @@ function Home({setToken}) {
         // }
     };
 
-    const getUserData = async () => {
-        const resp = await axios.get("")
-    }
+    // const getUserData = async () => {
+    //     const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id);
+    //     console.log("get data", resp);
+    //     console.log("params", params.id);
+    // }
 
     useEffect(()=>{
         getData();
+        console.log("params", params.id);
     }, [])
 
     return <div>
@@ -65,13 +68,13 @@ function Home({setToken}) {
             history.push("/profile/"+o.id)
         }}
         gotoPost={()=>{
-            history.push("/post/"+i)
+            history.push("/post/"+o.id)
         }}
         />
         )}
         <End>You've seen all posts</End>
         <NavBar onProfileClick={()=>{
-            history.push("/userprofile/"+params.id)
+            history.push("/myprofile")
         }}/>
     </div>
 }

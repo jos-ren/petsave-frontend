@@ -27,7 +27,7 @@ function Post() {
     const [comments, setComments] = useState([]);
     const [post, setPost] = useState({});
     const [like, setLike] = useState("");
-    const [comment, setComment] = useState("");
+    const [content, setContent] = useState("");
 
 
     // const createComment = () => {
@@ -62,12 +62,12 @@ function Post() {
 
     const createComment = async () => {
         const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
-            content: comment,
+            content: content,
             post_id: post.id
         });
-        console.log(resp);
+        console.log("comment created,", resp);
 
-        getComments();
+        // getComments();
     };
 
 
@@ -113,7 +113,7 @@ function Post() {
             >
             </Comment>)}
         <CmtInput 
-        onChange={(e)=>setComment(e.target.value)}
+        onChange={(e)=>setContent(e.target.value)}
          onClick={createComment}/>
         <NavBar />
     </Container>
