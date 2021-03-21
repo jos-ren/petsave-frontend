@@ -10,6 +10,8 @@ import { useParams, useHistory } from "react-router";
 
 const Container = styled.div`
 background-color:#F0EEFF;
+// border:1px solid red;
+height:100vh;
 `;
 
 const PostBox = styled.div`

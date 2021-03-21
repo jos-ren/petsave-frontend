@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from 'react-router-dom';
 import axios from "axios";
+import styled from 'styled-components';
 
 import AddPhoto from "comps/AddPhoto";
 import MultiLineInput from "comps/MultiLineInput";
@@ -12,22 +13,13 @@ import ConfirmBox from "comps/Confirm";
 
 function AddPost() {
 
-  // const [popup, setPopup] = useState(false);
-  // const [confirm, setConfirm] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const history = useHistory();
+  const [confirm, setConfirm] = useState(false);
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
+  const [imgurl, setImgurl] = useState(null);
   const [posts, setPosts] = useState([])
-  const history = useHistory();
-  // capture user_id by token
-
-  // const createPost = async () => {
-  //   const resp = await axios.post("https://petsave-backend.herokuapp.com/api/posts", {
-  //     caption: caption
-  //   });
-  //   console.log(resp);
-  //   // setPopup(true);
-  //   // setConfirm(true);
-  // }
 
   const CreatePost = async event => {
     event.preventDefault()
@@ -42,6 +34,8 @@ function AddPost() {
     data.append('caption', caption)
     const resp = await axios.post('https://petsave-backend.herokuapp.com/api/posts', data
     );
+    setPopup(true);
+    setConfirm(true);
     setPosts([resp.data])
     console.log("resp", posts)
   }
@@ -49,21 +43,24 @@ function AddPost() {
   return (
     <div className="page">
 
-      {/* {popup ? <Backdrop /> : null}
-      {confirm ? <ConfirmBox reMove1="false" /> : null} */}
+      {popup ? <Backdrop /> : null}
+      {confirm ? <ConfirmBox reMove1="false" /> : null}
 
       <TopNav text="Add Post" displayr="none" iconleft="/icons/back_outline.svg" />
+
       <form onSubmit={CreatePost}>
-        <AddPhoto 
-        filename={image}
-        onChange={e => setImage(e.target.files[0])}
-        image={posts.img_src}
+        <AddPhoto
+          filename={image}
+          onChange={
+            e => {
+              setImage(e.target.files[0])
+              setImgurl(URL.createObjectURL(e.target.files[0]))
+            }
+          }
+          image={imgurl}
         />
         <MultiLineInput header="Caption" onChange={(e) => setCaption(e.target.value)} />
-        <Button margin="12px" text="Create Post"
-          type="submit"
-        // onClick={() => CreatePost()}
-        />
+        <Button margin="0px 24px" text="Create Post" type="submit" />
       </form>
       <Navbar />
     </div>

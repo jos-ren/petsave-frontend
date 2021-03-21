@@ -8,7 +8,7 @@ justify-content: center;
 height: auto;
 padding: 0px 24px 0px 24px;
 background-color:#F0EEFF;
-border:1px solid red;
+// border:1px solid red;
 `;
 
 const InnerCont = styled.div`
@@ -46,9 +46,9 @@ color: #000000;
 
 const Line = styled.div`
     min-width: 414px;
-    height: 0.1px;
+    height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
-    display: ${props => props.displayline ? props.displayline : ""};
+    // display: ${props => props.displayline ? props.displayline : ""};
 `;
 
 
@@ -71,7 +71,7 @@ const Comment = ({ username, comment, pfpic, displayline }) => {
         <Line displayline={displayline} />
     </div>
 }
-
+  
 Comment.defaultProps = {
     pfpic: 'img/profile.jpg',
     username: "mayahiga",

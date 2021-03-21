@@ -35,7 +35,7 @@ const AddPhoto = ({filename, onChange, image}) => {
                 onChange={onChange }
                 type="file"
                 accept="image/*"
-                // hidden 
+                hidden 
                 />
             <Plus src='/icons/add.svg' />
             <Photo src={image} />

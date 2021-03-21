@@ -9,8 +9,7 @@ const Container = styled.div`
     min-height: 71px;
     position: absolute;
     bottom: 0px;
-    border:1px solid red;
-    // background-color:white;
+    background-color:white;
     button {
         min-width: 55px;
         min-height: 40px;
