@@ -11,6 +11,7 @@ import Backdrop from "comps/Backdrop";
 import Button from "comps/Button/default";
 import Input from "comps/Input";
 import ConfirmBox from "comps/Confirm";
+import { LogoutConfirm } from "stories/Confirm.stories";
 
 function UserProfile ({}) {
 
@@ -21,6 +22,9 @@ function UserProfile ({}) {
     const [user, setUser] = useState({});
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
+    const [pwd, setPwd] = useState("");
+    const [email, setEmail] = useState("");
+    const [img, setImg] = useState("");
 
     const [popup, setPopup] = useState(false);
     const [confirm, setConfirm] = useState(false);
@@ -37,7 +41,29 @@ function UserProfile ({}) {
         if(token){
             axios.defaults.headers.common['Authorization'] = token;
             setUser({...resp.data.user[0]});
-            }
+        } else {
+            history.push("/login")
+        }
+    }
+
+    const updateData = async () => {
+        var token = await localStorage.getItem("token")
+        if(token){
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/"+params.username, {
+            fullname: name,
+            username: username,
+            email: email,
+            pwd: pwd,
+            profile_pic: img
+        });
+        console.log("edited", resp);
+    } else {
+        history.push("/login")
+    }
+}
+    const logOutUser = async () => {
+        var token = await localStorage.removeItem("token")
+            history.push("/login")
     }
 
     useEffect(()=>{
@@ -49,21 +75,26 @@ function UserProfile ({}) {
             <div className="page">
 
             {popup ? <Backdrop /> : null}
-            {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" /> : null}
+            {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
 
             <TopNav displayr="none" />
             <AddPhoto />
-            <Input />
-            <Input header="Email" placeholder="Enter your new email" />
-            <Input header="Username" placeholder="Enter your new username" />
-            <Input header="Password" placeholder="Enter your new password" />
+            <Input placeholder={user.fullname} 
+            onChange={(e)=>setName(e.target.value)}/>
+            <Input header="Email" placeholder={user.email} 
+            onChange={(e)=>setEmail(e.target.value)}/>
+            <Input header="Username" placeholder={user.username} 
+            onChange={(e)=>setUsername(e.target.value)} />
+            <Input header="Password" type="password" placeholder="Enter your new password" 
+            onChange={(e)=>setPwd(e.target.value)}/>
             <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
             onClick={() => {
-                history.back()
+                updateData(name, email, username, pwd);
             }}
             />
             <Button margin="12px" text="Log Out" disable="true"
-            onClick={() => setBoth()} />
+            onClick={() => {
+                setBoth();}} />
             </div>
         )
     } else {
