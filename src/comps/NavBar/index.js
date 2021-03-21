@@ -41,7 +41,7 @@ cursor: pointer;
 border: none;
 `;
 
-const IconCont = styled.div`
+const IconCont = styled.img`
 min-width: 30px;
 max-width: 30px;
 min-height: 30px;
@@ -82,13 +82,11 @@ const NavBar = ({ }) => {
         <Container>
             <Line />
             <Box>
-                {/* When user clicks the home_outline icon, the container will change the icon to home (filled) */}
-                <IconCont className={filled1 ? "fill" : "unfill"} >
-                    <img onClick={() => {
+                <IconCont onClick={() => {
                     setFilled1(true)
                     history.push("/home")
                     }}
-                    src={filled1 ? "/icons/home.svg" : "/icons/home_outline.svg"} />
+                    src={filled1 ? "/icons/home.svg" : "/icons/home_outline.svg"}>
                 </IconCont>
 
                 <AddButton onClick={() => {
@@ -97,12 +95,11 @@ const NavBar = ({ }) => {
                     <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" />
                 </AddButton>
 
-                {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
                 <IconCont onClick={() => {
                     history.push("/userprofile/"+ params.id)
-                    setFilled2(false)
-                }}>
-                    <img src={filled2 ? "/icons/profile.svg" : "/icons/profile_outline.svg"}/>
+                    setFilled2(true)
+                    }} 
+                    src={filled2 ? "/icons/profile.svg" : "/icons/profile_outline.svg"}>
                 </IconCont>
             </Box>
         </Container>
@@ -110,8 +107,7 @@ const NavBar = ({ }) => {
 }
 
 NavBar.defaultProps = {
-    filled1: false,
-    filled2: false,
+    onClick:()=>{},
     disable: false,
 }
 

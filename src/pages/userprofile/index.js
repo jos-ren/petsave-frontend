@@ -14,6 +14,7 @@ function UserProfile ({}) {
     const [user, setUser] = useState({});
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
+    const [posts, setPosts] = useState([]);
 
     const getUserInfo = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.username);
@@ -28,6 +29,14 @@ function UserProfile ({}) {
             }
     }
 
+    const GetPosts = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
+        if (resp.data !== "expired" && resp.data !== "no token") {
+            setPosts([...resp.data])
+            console.log("posts", resp);
+        } 
+    }
+
     useEffect(()=>{
         getUserInfo();
     }, []);
@@ -37,7 +46,7 @@ function UserProfile ({}) {
         <TopNav displayl='none' iconright='/icons/settings.svg' />
         <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg' />
         <HomeFeed />
-        <NavBar profileIcon='icons/profile.svg' />
+        <NavBar/>
 
     </div>
     )
