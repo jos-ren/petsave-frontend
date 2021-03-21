@@ -36,6 +36,7 @@ function UserProfile ({}) {
     const getUserInfo = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/user");
         console.log("get data", resp);
+        console.log("get data", resp.data.user[0].id);
 
         var token = await localStorage.getItem("token")
         if(token){
@@ -49,7 +50,7 @@ function UserProfile ({}) {
     const updateData = async () => {
         var token = await localStorage.getItem("token")
         if(token){
-        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/"+params.username, {
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/"+ params.id, {
             fullname: name,
             username: username,
             email: email,
@@ -89,7 +90,8 @@ function UserProfile ({}) {
             onChange={(e)=>setPwd(e.target.value)}/>
             <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
             onClick={() => {
-                updateData(name, email, username, pwd);
+                updateData();
+                history.push("/myprofile")
             }}
             />
             <Button margin="12px" text="Log Out" disable="true"
