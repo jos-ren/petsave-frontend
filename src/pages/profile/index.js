@@ -27,10 +27,10 @@ function Profile({ }) {
 
     const GetPosts = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        if (resp.data !== "expired" && resp.data !== "no token") {
-            setPosts([...resp.data])
-            console.log("posts", resp);
-        } 
+        // if (resp.data !== "expired" && resp.data !== "no token") {
+        //     setPosts([...resp.data])
+        //     console.log("posts", resp);
+        // } 
     }
 
     const getUserData = async () => {
