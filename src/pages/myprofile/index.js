@@ -37,6 +37,7 @@ function UserProfile({ }) {
     const getUserInfo = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/user");
         console.log("get data", resp);
+        console.log("get data", resp.data.user[0].id);
 
         var token = await localStorage.getItem("token")
         if (token) {

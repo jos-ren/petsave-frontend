@@ -30,11 +30,6 @@ function Post() {
     const [like, setLike] = useState("");
     const [content, setContent] = useState("");
 
-
-    // const createComment = () => {
-    //     console.log(comment, post.id);
-    // }
-
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id);
         console.log(resp.data.posts)
