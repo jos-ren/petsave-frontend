@@ -14,6 +14,7 @@ const Container = styled.div`
     position:absolute;
     top:0px;
     right:0px;
+    z-index:2;
 `;
 
 const Spacer = styled.div`

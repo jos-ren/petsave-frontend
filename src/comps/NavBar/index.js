@@ -41,7 +41,7 @@ cursor: pointer;
 border: none;
 `;
 
-const IconCont = styled.div`
+const IconCont = styled.img`
 min-width: 30px;
 max-width: 30px;
 min-height: 30px;
@@ -68,13 +68,13 @@ const Line = styled.div`
 `;
 
 
-const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => {
+const NavBar = ({ }) => {
 
     const history = useHistory();
     const params = useParams();
 
-    const [homeClick, setHomeClick] = useState(false);
-    const [profileClick, setProfileClick] = useState(false);
+    const [filled1, setFilled1] = useState(false);
+    const [filled2, setFilled2] = useState(false);
 
     return <div>
 
@@ -82,32 +82,24 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
         <Container>
             <Line />
             <Box>
-                {/* When user clicks the home_outline icon, the container will change the icon to home (filled) */}
                 <IconCont onClick={() => {
+                    setFilled1(true)
                     history.push("/home")
-                }}
-                    onChange={(e) => {
-                        setHomeClick();
-                    }}>
-                    <img onClick={() => {
-                    }} name="home" src='/icons/home_outline.svg' />
+                    }}
+                    src={filled1 ? "/icons/home.svg" : "/icons/home_outline.svg"}>
                 </IconCont>
 
                 <AddButton onClick={() => {
                     history.push("/addpost")
                 }}>
-                    <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" />
+                    <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" alt="add"/>
                 </AddButton>
 
-                {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
-                <IconCont onClick={()=>{
-                    history.push("/myprofile")
-                }}
-                    onChange={(e) => {
-                        setProfileClick();
-                    }}>
-                    <img onClick={() => {
-                    }} name="profile" src={profileIcon} />
+                <IconCont onClick={() => {
+                    history.push("/userprofile/"+ params.id)
+                    setFilled2(true)
+                    }} 
+                    src={filled2 ? "/icons/profile.svg" : "/icons/profile_outline.svg"}>
                 </IconCont>
             </Box>
         </Container>
@@ -115,10 +107,8 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
 }
 
 NavBar.defaultProps = {
-    onHomeClick: () => { },
-    onProfileClick: () => { },
+    onClick:()=>{},
     disable: false,
-    profileIcon: "/icons/profile_outline.svg"
 }
 
 export default NavBar;

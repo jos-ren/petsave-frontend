@@ -11,6 +11,7 @@ height:366px;
 border-radius: 36px;
 background-color: #54BAF3;
 cursor: pointer;
+position:relative;
 margin: ${props => props.margin ? props.margin : "24px"};
 `;
 
@@ -19,36 +20,28 @@ width:366px;
 height:366px;
 border-radius: 36px;
 object-fit:cover;
-position:fixed;
+position:absolute;
 `;
 
 const Plus = styled.img`
 width:65px;
 height:65px;
+position:absolute;
 `;
 
-class AddPhoto extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            file: null
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
-    handleChange(event) {
-        this.setState({
-            file: URL.createObjectURL(event.target.files[0])
-        })
-    }
-
-    render() {
-        return (
-            <Container>
-                <input type="file" onChange={this.handleChange} hidden/>
-                <Plus src='/icons/add.svg' />
-                <Photo src={this.state.file} />
-            </Container>
-        );
-    }
+const AddPhoto = ({filename, onChange, image}) => {
+    return (
+        <Container>
+            <input
+                filename={filename}
+                onChange={onChange }
+                type="file"
+                accept="image/*"
+                hidden 
+                />
+            <Plus src='/icons/add.svg' />
+            <Photo src={image} />
+        </Container>
+    );
 }
 export default AddPhoto;

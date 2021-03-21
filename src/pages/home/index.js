@@ -73,7 +73,8 @@ function Home() {
         />
         )}
         <End>You've seen all posts</End>
-        <NavBar/>
+        <NavBar filled1="true"/>
+
     </div>
 }
 

@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Container = styled.div`
+    margin-left:24px;
+`;
+
 const InputDiv = styled.textarea`
     height: 100px;
     width: 366px;
@@ -14,6 +18,7 @@ const InputDiv = styled.textarea`
     font-weight: 400;
     font-size: 14px;
     padding:12px;
+    resize: none;
 :focus{
     outline: none;
     background: #F8FAFA;
@@ -24,10 +29,10 @@ const InputDiv = styled.textarea`
 `;
 
 const MultiLineInput = ({ header, id, onChange }) => {
-    return <div>
+    return <Container>
         <h3> {header} </h3>
         <InputDiv id={id} onChange={onChange} />
-    </div>
+    </Container>
 };
 
 MultiLineInput.defaultProps = {
