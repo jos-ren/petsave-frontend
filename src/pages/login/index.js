@@ -24,7 +24,7 @@ function Login ({setToken}) {
             const token = resp.data.token;
             setToken(token);
             // // 1) store the token in the storage
-            // sessionStorage.setItem("token", token);
+            sessionStorage.setItem("token", token);
             // // 2) connect token with axios header
             axios.defaults.headers.common['Authorization'] = token;
             // // 3) redirect to the main page
@@ -41,9 +41,11 @@ function Login ({setToken}) {
             <div className="login_input">
                 <Input header="Username" onChange={(e)=>setUsername(e.target.value)}/>
                 <Input header="Password" type="password" placeholder="*********" onChange={(e)=>setPwd(e.target.value)}/>
+                {error && <p> {error} </p>}
             </div>
             <div className="login_but">
-                <Button text="log in" bgcolor="#54BAF3"
+                <Button text="log in" bgcolor="#c4c4c4"
+                disable={username === "" || pwd === ""}
                 onClick={()=>{
                     handleLogin();
                     setUser(username);
