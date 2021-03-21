@@ -35,8 +35,8 @@ function Register() {
       <Input header="Username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)} />
       <Input header="Password" placeholder="Enter your password" type="password" onChange={(e) => setPwd(e.target.value)} />
       <Button margin="12px" text="Create Account"
-      // figure out how to enable this button based on form completion
-      disable={email !== null}
+        disable={username === "" || pwd === "" || email ==="" || name ===""}
+        bgcolor="#c4c4c4"
         onClick={() => {
           HandleRegister();
         }}
