@@ -17,6 +17,7 @@ function AddPost() {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
   const [posts, setPosts] = useState([])
+  const history = useHistory();
   // capture user_id by token
 
   // const createPost = async () => {
@@ -30,19 +31,20 @@ function AddPost() {
 
   const CreatePost = async event => {
     event.preventDefault()
+    var token = await localStorage.getItem("token")
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = token;
+    } else {
+      history.push("/login");
+    }
     const data = new FormData()
     data.append('image', image)
     data.append('caption', caption)
     const resp = await axios.post('https://petsave-backend.herokuapp.com/api/posts', data
-      // {
-      //   caption: caption,
-      //   img_src: image
-      // }
     );
     setPosts([resp.data])
     console.log("resp", posts)
   }
-
 
   return (
     <div className="page">
@@ -52,18 +54,16 @@ function AddPost() {
 
       <TopNav text="Add Post" displayr="none" iconleft="/icons/back_outline.svg" />
       <form onSubmit={CreatePost}>
-      {/* <AddPhoto /> */}
-      <input
+        <AddPhoto 
         filename={image}
         onChange={e => setImage(e.target.files[0])}
-        type="file"
-        accept="image/*"
-      ></input>
-      <MultiLineInput header="Caption" onChange={(e) => setCaption(e.target.value)} />
-      <Button margin="12px" text="Create Post"
-        type="submit"
+        image={posts.img_src}
+        />
+        <MultiLineInput header="Caption" onChange={(e) => setCaption(e.target.value)} />
+        <Button margin="12px" text="Create Post"
+          type="submit"
         // onClick={() => CreatePost()}
-      />
+        />
       </form>
       <Navbar />
     </div>

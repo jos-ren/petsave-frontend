@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from 'styled-components';
 import SinglePost from "comps/SinglePost";
-import NavBar from "comps/NavBar";
 import TopNav from "comps/TopNav";
 import Comment from "comps/Comment";
 import CmtInput from "comps/CommentInput";
@@ -113,7 +112,6 @@ function Post() {
         <CmtInput 
         onChange={(e)=>setComment(e.target.value)}
          onClick={createComment}/>
-        <NavBar />
     </Container>
 }
 

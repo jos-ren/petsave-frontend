@@ -4,10 +4,13 @@ import styled from 'styled-components';
 const Container = styled.div`
     display: flex;
     align-items: center;
+    justify-content:center;
     min-width: 414px;
     min-height: 71px;
-    background-color: white;
-    padding: 0px 10px;
+    position: absolute;
+    bottom: 0px;
+    border:1px solid red;
+    // background-color:white;
     button {
         min-width: 55px;
         min-height: 40px;
@@ -19,8 +22,6 @@ const Container = styled.div`
         margin-left: 6px;
         cursor: pointer;
     }
-    // position: absolute;
-    // bottom: 75px;
 `;
 
 const Comment = styled.div`

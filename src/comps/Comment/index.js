@@ -7,6 +7,8 @@ flex-direction: column;
 justify-content: center;
 height: auto;
 padding: 0px 24px 0px 24px;
+background-color:#F0EEFF;
+border:1px solid red;
 `;
 
 const InnerCont = styled.div`
