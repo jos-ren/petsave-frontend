@@ -10,6 +10,7 @@ import HomeFeed from "comps/HomeFeed";
 function UserProfile ({}) {
 
     const params = useParams();
+    const history = useHistory();
 
     const [user, setUser] = useState({});
     const [name, setName] = useState("");
@@ -30,15 +31,20 @@ function UserProfile ({}) {
     }
 
     const GetPosts = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        if (resp.data !== "expired" && resp.data !== "no token") {
-            setPosts([...resp.data])
-            console.log("posts", resp);
-        } 
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setPosts({ ...resp.data.posts[0]});
+        } else {
+            history.push("/login");
+        }
     }
 
     useEffect(()=>{
         getUserInfo();
+        GetPosts();
     }, []);
 
     return (
@@ -46,6 +52,8 @@ function UserProfile ({}) {
         <TopNav displayl='none' iconright='/icons/settings.svg' />
         <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg' />
         <HomeFeed />
+            {posts.map((o, i) => <HomeFeed key={i} img={o.img_url}>
+        </HomeFeed>)}
         <NavBar/>
 
     </div>

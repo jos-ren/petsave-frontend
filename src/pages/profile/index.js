@@ -29,10 +29,8 @@ function Profile({ }) {
 
     const GetPosts = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        // if (resp.data !== "expired" && resp.data !== "no token") {
-        //     setPosts([...resp.data])
-        //     console.log("posts", resp);
-        // } 
+        setPosts({...resp.data.posts});
+        console.log("posts", resp);
     }
 
     const getUserData = async () => {
@@ -64,9 +62,8 @@ function Profile({ }) {
             numfollower={user.fllwrs}
             numfollow={user.fllwng}
             />
-            <HomeFeed />
-            {posts.map((o, i) => <HomeFeed key={i} img={o.img_url}>
-            </HomeFeed>)}
+            {posts.map((o, i) => 
+            <HomeFeed key={i} img={o.img_url} />)}
             <NavBar />
         </div>
     )
