@@ -54,7 +54,7 @@ function Login ({setToken}) {
                 onClick={()=>{
                     handleLogin();
                     setUser(username);
-                    setError("Incorrect email or password")
+                    setError("Incorrect Email or Password!")
                 }}
                 />
                 <div>
