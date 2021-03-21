@@ -17,6 +17,8 @@ function Profile({ }) {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
 
+    const [username, setUsername] = useState("");
+
     const handleFollow = async () => {
         const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/users/" + params.id, {
             followers: follower + 1,
@@ -34,7 +36,7 @@ function Profile({ }) {
     }
 
     const getUserData = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id);
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.username);
         // console.log(resp);
 
         var token = await localStorage.getItem("token")

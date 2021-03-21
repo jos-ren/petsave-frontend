@@ -100,7 +100,9 @@ const NavBar = ({ home, profile, onHomeClick, profileIcon, onProfileClick }) => 
                 </AddButton>
 
                 {/* When user clicks the profile_outline icon, the container will change the icon to profile (filled) */}
-                <IconCont onClick={onProfileClick}
+                <IconCont onClick={()=>{
+                    history.push("/myprofile")
+                }}
                     onChange={(e) => {
                         setProfileClick();
                     }}>

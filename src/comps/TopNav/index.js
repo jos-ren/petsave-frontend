@@ -66,7 +66,7 @@ const Logo = styled.img`
     display: ${props => props.displaylogo ? props.displaylogo : ""};
 `;
 
-const TopNav = ({ iconleft, iconright, text, logo, displayr, displayl, displaylogo }) => {
+const TopNav = ({ iconleft, iconright, text, logo, displayr, displayl, displaylogo, onClick }) => {
 
     const history = useHistory();
 
@@ -86,9 +86,7 @@ const TopNav = ({ iconleft, iconright, text, logo, displayr, displayl, displaylo
                 <Icon src={iconleft}></Icon>
             </IconBoxLeft>
             <IconBoxRight displayr={displayr}
-                onClick={() => {
-                    history.push("/editProfile")
-                }}
+                onClick={onClick}
             >
                 <Icon src={iconright}></Icon>
             </IconBoxRight>
@@ -104,7 +102,8 @@ TopNav.defaultProps = {
     logo: "/logo.svg",
     displayr: "flex",
     displayl: "flex",
-    displaylogo: "none"
+    displaylogo: "none",
+    onClick:()=>{}
 };
 
 export default TopNav;

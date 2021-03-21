@@ -42,7 +42,7 @@ const Logout = styled.div`
     margin-buttom: 12px;
 `;
 
-const ConfirmBox = ({text, reMove1, reMove2}) => {
+const ConfirmBox = ({text, reMove1, reMove2 , onLogout}) => {
 
     const history = useHistory();
 
@@ -63,9 +63,7 @@ const ConfirmBox = ({text, reMove1, reMove2}) => {
 
         <Logout reMove2={reMove2}>
             <Button disable={true} margin="30px 0px 12px" text="Yes, log out" width="257px" height="50px" 
-                onClick={()=>{
-                    history.push("/login")
-                }} />
+                onClick={onLogout} />
             <Button disable={true} bgcolor="#54BAF3" text="No, go back Home" width="257px" height="50px" 
                 onClick={()=>{
                     history.push("/home")
@@ -79,6 +77,7 @@ ConfirmBox.defaultProps = {
     text: "Your post has been created!",
     reMove1: true,
     reMove2: true,
+    onLogout:()=>{}
 };
 
 export default ConfirmBox;

@@ -14,13 +14,13 @@ const End = styled.h3`
     align-items: center;
 `;
 
-function Home({setToken}) {
+function Home() {
 
     const params = useParams();
     const history = useHistory();
 
     const [posts, setPosts] = useState([]);
-    const [user, setUser] = useState("");
+    const [username, setUsername] = useState("");
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts");
@@ -43,12 +43,15 @@ function Home({setToken}) {
         // }
     };
 
-    const getUserData = async () => {
-        const resp = await axios.get("")
-    }
+    // const getUserData = async () => {
+    //     const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.id);
+    //     console.log("get data", resp);
+    //     console.log("params", params.id);
+    // }
 
     useEffect(()=>{
         getData();
+        console.log("params", params.id);
     }, [])
 
     return <div>
@@ -62,17 +65,15 @@ function Home({setToken}) {
         postimg={o.img_src}
         likes={o.likes}
         gotoProfile={()=>{
-            history.push("/profile/"+o.id)
+            history.push("/profile/"+o.username)
         }}
         gotoPost={()=>{
-            history.push("/post/"+i)
+            history.push("/post/"+o.id)
         }}
         />
         )}
         <End>You've seen all posts</End>
-        <NavBar onProfileClick={()=>{
-            history.push("/userprofile/"+params.id)
-        }}/>
+        <NavBar/>
     </div>
 }
 

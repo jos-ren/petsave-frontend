@@ -10,7 +10,7 @@ import Home from 'pages/home';
 import Post from 'pages/post';
 import AddPost from 'pages/addPost';
 import EditPost from 'pages/editProfile';
-import UserProfile from 'pages/userprofile';
+import UserProfile from 'pages/myprofile';
 import Profile from 'pages/profile';
 
 function App() {
@@ -43,11 +43,11 @@ function App() {
           <Home setToken={setToken}/>
         </Route>
 
-        <Route exact path="/profile/:id">
+        <Route exact path="/profile/:username">
           <Profile />
         </Route>
 
-        <Route exact path="/userprofile/:id">
+        <Route exact path="/myprofile">
           <UserProfile />
         </Route>
 
@@ -59,8 +59,8 @@ function App() {
           <AddPost />
         </Route>
 
-        <Route exact path="/editProfile">
-          <EditPost />
+        <Route exact path="/myprofile/edit">
+          <UserProfile />
         </Route>
 
 
