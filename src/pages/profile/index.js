@@ -39,11 +39,9 @@ function Profile({ }) {
     };
 
     const GetPosts = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        // if (resp.data !== "expired" && resp.data !== "no token") {
-        //     setPosts([...resp.data])
-        //     console.log("posts", resp);
-        // } 
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
+        console.log("posts", resp)
+        console.log("params", params.username)
     }
 
     const getUserData = async () => {

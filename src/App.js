@@ -51,16 +51,16 @@ function App() {
           <UserProfile />
         </Route>
 
+        <Route exact path="/myprofile/edit">
+          <UserProfile />
+        </Route>
+
         <Route exact path="/post/:id">
           <Post />
         </Route>
 
         <Route exact path="/addpost">
           <AddPost />
-        </Route>
-
-        <Route exact path="/myprofile/edit">
-          <UserProfile />
         </Route>
 
 

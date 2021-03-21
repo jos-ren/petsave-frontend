@@ -16,30 +16,22 @@ function UserProfile ({}) {
     const [username, setUsername] = useState("");
     const [posts, setPosts] = useState([]);
 
-    const getUserInfo = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.username);
-        console.log("get data", resp);
-        console.log("params", params.id);
+    // const getUserInfo = async () => {
+    //     const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/"+params.username);
+    //     console.log("get data", resp);
+    //     console.log("params", params.id);
 
-        var token = await localStorage.getItem("token")
-        if(token){
-            axios.defaults.headers.common['Authorization'] = token;
-            setUser({...resp.data.result[0]});
-            // console.log("token", token);
-            }
-    }
+    //     var token = await localStorage.getItem("token")
+    //     if(token){
+    //         axios.defaults.headers.common['Authorization'] = token;
+    //         setUser({...resp.data.result[0]});
+    //         // console.log("token", token);
+    //         }
+    // }
 
-    const GetPosts = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        if (resp.data !== "expired" && resp.data !== "no token") {
-            setPosts([...resp.data])
-            console.log("posts", resp);
-        } 
-    }
-
-    useEffect(()=>{
-        getUserInfo();
-    }, []);
+    // useEffect(()=>{
+    //     getUserInfo();
+    // }, []);
 
     return (
         <div className="profile_page">
