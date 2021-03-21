@@ -29,17 +29,9 @@ function Post() {
     const [comment, setComment] = useState("");
 
 
-    // const createComment = async () => {
-    //     const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
-    //         content: comment,
-    //         post_id: post.id
-    //     });
-    //     console.log(resp);
-    // };
-
-    const createComment = () => {
-        console.log(comment, post.id);
-    }
+    // const createComment = () => {
+    //     console.log(comment, post.id);
+    // }
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id);
@@ -66,6 +58,16 @@ function Post() {
             history.push("/login");
         }
     }
+
+    const createComment = async () => {
+        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
+            content: comment,
+            post_id: post.id
+        });
+        console.log(resp);
+
+        getComments();
+    };
 
 
     //Brittany's questionable update Likes function lol
