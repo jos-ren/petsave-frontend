@@ -82,7 +82,7 @@ function Profile({ }) {
             /> 
             {posts.map((o, i) => 
             <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
-                
+                history.push("/post/"+o.id)
             }}/>)}
             <NavBar />
         </div>
