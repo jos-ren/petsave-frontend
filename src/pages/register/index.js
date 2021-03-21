@@ -10,13 +10,15 @@ import Input from "comps/Input";
 function Register() {
 
   const history = useHistory();
+  const [imgurl, setImgurl] = useState(null);
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
 
   const HandleRegister = async () => {
-    const resp = await axios.post("https://petsave-backend.herokuapp.com/api/register", { fullname: name, email: email, username: username, pwd: pwd });
+    const resp = await axios.post("https://petsave-backend.herokuapp.com/api/register", { fullname: name, email: email, username: username, pwd: pwd,  profile_pic:image });
     console.log("response", resp);
     if (resp.data !== "Something went wrong registering user") {
       // this part is based on what we add in database - how?
@@ -28,8 +30,17 @@ function Register() {
 
   return (
     <div className="page">
-      <TopNav displayr="none" text="Register"/>
-      <AddPhoto />
+      <TopNav displayr="none" text="Register" />
+      <AddPhoto
+        filename={image}
+        onChange={
+          e => {
+            setImage(e.target.files[0])
+            setImgurl(URL.createObjectURL(e.target.files[0]))
+          }
+        }
+        image={imgurl}
+      />
       <Input header="Full Name" placeholder="Enter your full name" onChange={(e) => setName(e.target.value)} />
       <Input header="Email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
       <Input header="Username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)} />

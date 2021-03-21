@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const Top = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 85%;
 `
@@ -50,6 +50,7 @@ const Box = styled.div`
 
 const Name = styled.h2`
     text-transform: capitalize;
+
     margin: 0px 0px 10px 15px;
     text-align: left;
     font-size: ${props => props.username ? props.username : ""};

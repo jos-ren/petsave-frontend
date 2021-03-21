@@ -17,14 +17,25 @@ function Profile({ }) {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
 
+    //Brittany's working on this .. NOT COMPLETE YET
     const [username, setUsername] = useState("");
 
     const handleFollow = async () => {
-        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/users/" + params.id, {
-            followers: follower + 1,
-            fllwng: following
-        });
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/following_accounts/"+params.user_id
+        // , {
+        //     fllwrs: follower + 1,
+        //     fllwng: following
+        // }
+        );
         console.log(resp);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setFollowing([...resp.data.follower_id]);
+        } else {
+            history.push("/login");
+    }
     };
 
     const GetPosts = async () => {
