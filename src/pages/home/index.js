@@ -51,7 +51,6 @@ function Home() {
 
     useEffect(()=>{
         getData();
-        console.log("params", params.id);
     }, [])
 
     return <div>
