@@ -80,6 +80,9 @@ function Profile({ }) {
             // numpost={user.numposts}
             // numfollower={user.fllwrs}
             // numfollow={user.fllwng}
+            onEmail={()=>{
+                history.push("mailto:"+user.email)
+            }}
             /> 
             {posts.map((o, i) => 
             <HomeFeed key={i} img={o.img_src} onPostClick={()=>{

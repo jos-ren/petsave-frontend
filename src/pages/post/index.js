@@ -99,7 +99,7 @@ function Post() {
         });
         console.log("comment created,", resp);
 
-        // getComments();
+        getComments();
     };
     
 
