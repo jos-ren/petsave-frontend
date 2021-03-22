@@ -21,7 +21,8 @@ class Likes extends React.Component {
     super(props);
     this.state ={
       likes: props.likes,
-      updated: false
+      updated: false,
+      onClick: () => { }
     }
     this.updateLikes = this.updateLikes.bind(this);
   }
@@ -47,12 +48,12 @@ class Likes extends React.Component {
     }
   }
 
-  render(){
+  render(onClick){
     
     return(
       <Container>
         <IconCon onClick={this.updateLikes}>
-          <LikesIcon />
+          <LikesIcon onClick={onClick}/>
         </IconCon>
           <h4>{this.state.likes} likes</h4>
       </Container>

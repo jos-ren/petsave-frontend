@@ -61,7 +61,7 @@ const Line = styled.div`
     display: ${props => props.displayline ? props.displayline : ""};
 `;
 
-const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline, likes, gotoPost, gotoProfile, updateLikes }) => {
+const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, displayline, likes, gotoPost, gotoProfile, updateLikes, onClick }) => {
 
     const history = useHistory();
 

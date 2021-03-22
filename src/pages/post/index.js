@@ -27,9 +27,11 @@ function Post() {
 
     const [comments, setComments] = useState([]);
     const [post, setPost] = useState({});
-    const [likes, setLikes] = useState("");
+    const [postlikes, setPostLikes] = useState("");
     const [comment, setComment] = useState("");
-
+    const [like, setLike] = useState("");
+    const [content, setContent] = useState("");
+    const [user, setUser] = useState("");
 
     // const createComment = async () => {
     //     const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
@@ -39,11 +41,22 @@ function Post() {
     //     console.log(resp);
     // };
     
-    const updateLikes = () => {
-        console.log(likes, post.id);
+    const likePost = async () => {
+        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes",{
+            likes: postlikes
+        });        
+
+        console.log("You liked this post!", resp);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setPostLikes([...resp.data.likes]);
+        } else {
+            history.push("/login");
     }
-    const [like, setLike] = useState("");
-    const [content, setContent] = useState("");
+    }
+
 
     const getData = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id);
@@ -69,7 +82,22 @@ function Post() {
         } else {
             history.push("/login");
         }
-    }
+    };
+
+    //Brittany's questionable getLikes function lol
+    const getLikes = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes");
+
+        console.log("It worked", resp.data.likes);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setPostLikes([...resp.data.likes]);
+        } else {
+            history.push("/login");
+        }
+    };
 
     const createComment = async () => {
         const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
@@ -80,24 +108,6 @@ function Post() {
 
         // getComments();
     };
-
-
-    //Brittany's questionable getLikes function lol
-    const getLikes = async () => {
-        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes");
-        // const likes = resp.data.likes;
-        // setLike(resp.data.likes + 1);
-        // return like;
-        console.log(resp);
-
-        var token = await localStorage.getItem("token")
-        if(token){
-            axios.defaults.headers.common['Authorization'] = token;
-            setLikes([...resp.data.likes]);
-        } else {
-            history.push("/login");
-    }
-};
     
 
     useEffect(()=>{
@@ -115,7 +125,7 @@ function Post() {
             avatarimg={post.profile_pic}
             postimg={post.img_src}
             likes={post.likes}
-            updateLikes={updateLikes}
+            updateLikes={likePost}
             gotoProfile={()=>{
                 history.push("/profile/"+post.id)
             }}
