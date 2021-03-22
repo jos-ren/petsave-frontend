@@ -11,7 +11,7 @@ function Login ({setToken}) {
     const [pwd, setPwd] = useState("");
 
     const [error, setError] = useState(null);
-    const [user, setUser] = useState("");
+    // const [user, setUser] = useState("");
 
     const handleLogin = async () => {
         const resp = await axios.post("https://petsave-backend.herokuapp.com/api/login",{
@@ -48,7 +48,7 @@ function Login ({setToken}) {
                 disable={username === "" || pwd === ""}
                 onClick={()=>{
                     handleLogin();
-                    setUser(username);
+                    // setUser(username);
                 }}
                 />
                 <div>

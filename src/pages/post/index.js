@@ -78,11 +78,9 @@ function Post() {
         });
         console.log("comment created,", resp);
 
-        // getComments();
+        getComments();
     };
 
-
-    //Brittany's questionable getLikes function lol
     const getLikes = async () => {
         const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes");
         // const likes = resp.data.likes;

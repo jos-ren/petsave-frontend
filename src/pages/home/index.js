@@ -72,7 +72,7 @@ function Home() {
         />
         )}
         <End>You've seen all posts</End>
-        <NavBar filled1="true"/>
+        <NavBar iconl="/icons/home.svg" iconr="/icons/profile_outline.svg"/>
 
     </div>
 }

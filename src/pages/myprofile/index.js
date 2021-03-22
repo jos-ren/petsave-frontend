@@ -128,7 +128,7 @@ function UserProfile({ }) {
                     numfollow={user.fllwng}
                 />
                 <HomeFeed />
-                <NavBar profileIcon='icons/profile.svg' />
+                <NavBar iconl="/icons/home_outline.svg" iconr="/icons/profile.svg"/>
 
             </div>
         )
