@@ -170,7 +170,6 @@ function UserProfile({ }) {
                 </Box>
 
                 <NavBar iconl="/icons/home_outline.svg" iconr="/icons/profile.svg" />
-
             </div>
         )
     }
