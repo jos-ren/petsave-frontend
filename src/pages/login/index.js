@@ -19,7 +19,6 @@ function Login ({setToken}) {
             pwd: pwd
         });
         console.log(resp);
-
         if(resp.data !== "Unautorized" && resp.data !== "Incorrect credentials"){
             const token = resp.data.token;
             setToken(token);
