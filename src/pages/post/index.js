@@ -136,6 +136,7 @@ function Post() {
                 pfpic={o.profile_pic}
             >
             </Comment>)}
+        <div className="comments"></div>
         <CmtInput 
         onChange={(e)=>setContent(e.target.value)}
          onClick={createComment}/>

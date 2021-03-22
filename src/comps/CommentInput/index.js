@@ -5,10 +5,11 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content:center;
-    min-width: 414px;
-    min-height: 71px;
+    width: 100%;
+    height: 71px;
     position: absolute;
     bottom: 0px;
+    right:0px;
     background-color:white;
     button {
         min-width: 55px;
@@ -28,7 +29,7 @@ const Comment = styled.div`
     align-items: center;
     input {
         min-width: 300px;
-        min-height: 40px;
+        height: 40px;
         border: none;
         box-sizing: border-box;
         box-shadow: 0px 0px 5px #C4C4C4;
@@ -37,13 +38,20 @@ const Comment = styled.div`
     }
 `;
 
+const Gap = styled.div`
+    height: 76px;
+`;
+
 const CmtInput = ({onChange, onClick}) => {
-    return <Container>
+    return <div>
+        <Gap />
+        <Container>
         <Comment>
             <input type="text" onChange={onChange}/>
         </Comment>
         <button onClick={onClick}><h5>Send</h5></button>
     </Container>
+    </div>
 }
 
 CmtInput.defaultProps = {
