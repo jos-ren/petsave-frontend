@@ -28,6 +28,7 @@ function Login ({setToken}) {
             axios.defaults.headers.common['Authorization'] = token;
             // // 3) redirect to the main page
             history.push("/home")
+            setError("")
         } else {
             // update a state to show an error
             setError("Incorrect Email or Password")
@@ -53,7 +54,7 @@ function Login ({setToken}) {
                 onClick={()=>{
                     handleLogin();
                     setUser(username);
-                    setError("Incorrect Email or Password");
+                    setError();
                 }}
                 />
                 <div>
