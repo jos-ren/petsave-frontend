@@ -9,7 +9,6 @@ import Register from 'pages/register';
 import Home from 'pages/home';
 import Post from 'pages/post';
 import AddPost from 'pages/addPost';
-import EditPost from 'pages/editProfile';
 import UserProfile from 'pages/myprofile';
 import Profile from 'pages/profile';
 

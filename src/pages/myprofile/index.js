@@ -11,6 +11,7 @@ import Backdrop from "comps/Backdrop";
 import Button from "comps/Button/default";
 import Input from "comps/Input";
 import ConfirmBox from "comps/Confirm";
+import MultiLineInput from "comps/MultiLineInput";
 import { LogoutConfirm } from "stories/Confirm.stories";
 
 function UserProfile({ }) {
@@ -24,6 +25,7 @@ function UserProfile({ }) {
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
     const [email, setEmail] = useState("");
+    const [bio, setBio] = useState("");
     const [imgurl, setImgurl] = useState(null);
     const [image, setImage] = useState("");
     const [posts, setPosts] = useState([]);
@@ -38,7 +40,7 @@ function UserProfile({ }) {
     const getUserInfo = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/user");
         console.log("get data", resp);
-        console.log("get data", resp.data.user[0].id);
+        // console.log("get data", resp.data.user[0].id);
 
         var token = await localStorage.getItem("token")
         if (token) {
@@ -54,7 +56,7 @@ function UserProfile({ }) {
         console.log("posts", resp.data);
 
         var token = await localStorage.getItem("token")
-        if(token){
+        if (token) {
             axios.defaults.headers.common['Authorization'] = token;
             setPosts([...resp.data.posts])
         } else {
@@ -89,44 +91,46 @@ function UserProfile({ }) {
         GetPosts();
     }, []);
 
-    // if (location.pathname === "/myprofile/edit") {
-    //     return (
-    //         <div className="page">
 
-    //             {popup ? <Backdrop /> : null}
-    //             {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
+    if (location.pathname === "/myprofile/edit") {
+        return (
+            <div className="page">
 
-    //             <TopNav displayr="none" />
-    //             <AddPhoto
-    //                 filename={image}
-    //                 onChange={
-    //                     e => {
-    //                         setImage(e.target.files[0])
-    //                         setImgurl(URL.createObjectURL(e.target.files[0]))
-    //                     }
-    //                 }
-    //                 image={imgurl}
-    //             />
-    //             <Input placeholder={user.fullname}
-    //                 onChange={(e) => setName(e.target.value)} />
-    //             <Input header="Email" placeholder={user.email}
-    //                 onChange={(e) => setEmail(e.target.value)} />
-    //             <Input header="Username" placeholder={user.username}
-    //                 onChange={(e) => setUsername(e.target.value)} />
-    //             <Input header="Password" type="password" placeholder="Enter your new password"
-    //                 onChange={(e) => setPwd(e.target.value)} />
-    //             <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
-    //                 onClick={() => {
-    //                     updateData();
-    //                 }}
-    //             />
-    //             <Button margin="12px" text="Log Out" disable="true"
-    //                 onClick={() => {
-    //                     setBoth();
-    //                 }} />
-    //         </div>
-    //     )
-    // } else {
+                {popup ? <Backdrop /> : null}
+                {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
+
+                <TopNav displayr="none"/>
+                <AddPhoto
+                    filename={image}
+                    onChange={
+                        e => {
+                            setImage(e.target.files[0])
+                            setImgurl(URL.createObjectURL(e.target.files[0]))
+                        }
+                    }
+                    image={imgurl}
+                />
+                <Input placeholder={user.fullname}
+                    onChange={(e) => setName(e.target.value)} />
+                <Input header="Email" placeholder={user.email}
+                    onChange={(e) => setEmail(e.target.value)} />
+                <Input header="Username" placeholder={user.username}
+                    onChange={(e) => setUsername(e.target.value)} />
+                <Input header="Password" type="password" placeholder="Enter your new password"
+                    onChange={(e) => setPwd(e.target.value)} />
+                <MultiLineInput header="Bio" placeholder={user.bio} onChange={(e) => setBio(e.target.value)} />
+                <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
+                    onClick={() => {
+                        updateData();
+                    }}
+                />
+                <Button margin="12px" text="Log Out" disable="true"
+                    onClick={() => {
+                        setBoth();
+                    }} />
+            </div>
+        )
+    } else {
         return (
             <div className="profile_page">
                 <TopNav displayl='none' iconright='/icons/settings.svg'
@@ -139,17 +143,17 @@ function UserProfile({ }) {
                     name={user.fullname}
                     imgurl={user.profile_pic}
                     bio={user.bio}
-                />
-                
+                />       
+                    
                 {posts.map((o, i) => 
                 <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
                     history.push("/post/"+o.id)
                 }}/>)}
-
                 <NavBar profileIcon='icons/profile.svg' />
 
             </div>
         )
+            }
 };
 
 export default UserProfile;

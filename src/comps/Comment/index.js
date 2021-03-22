@@ -17,10 +17,8 @@ flex-direction: row;
 `;
 
 const AvatarIcon = styled.div`
-max-height: 36px;
-min-height: 36px;
-max-width: 36px;
-min-width: 36px;
+height: 36px;
+width: 36px;
 cursor: pointer;
 padding:12px 0px 0px 0px;
 border-radius: 50%;
