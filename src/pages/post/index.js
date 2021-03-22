@@ -75,18 +75,6 @@ function Post() {
         } else {
             history.push("/login");
         }
-    }
-
-    const createComment = async () => {
-        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/post/comment",{
-            content: content,
-            post_id: post.id
-        });
-        console.log("comment created,", resp);
-
-        getComments();
-    };
-
     };
 
     //Brittany's questionable getLikes function lol
