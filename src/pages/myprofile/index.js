@@ -11,7 +11,8 @@ import Backdrop from "comps/Backdrop";
 import Button from "comps/Button/default";
 import Input from "comps/Input";
 import ConfirmBox from "comps/Confirm";
-// import { LogoutConfirm } from "stories/Confirm.stories";
+import MultiLineInput from "comps/MultiLineInput";
+import { LogoutConfirm } from "stories/Confirm.stories";
 
 const ImgCont = styled.div`
 object-fit: contain;
@@ -41,6 +42,7 @@ function UserProfile({ }) {
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
     const [email, setEmail] = useState("");
+    const [bio, setBio] = useState("");
     const [imgurl, setImgurl] = useState(null);
     const [image, setImage] = useState("");
     const [posts, setPosts] = useState([]);
@@ -131,6 +133,7 @@ function UserProfile({ }) {
                     onChange={(e) => setUsername(e.target.value)} />
                 <Input header="Password" type="password" placeholder="Enter your new password"
                     onChange={(e) => setPwd(e.target.value)} />
+                <MultiLineInput header="Bio" placeholder={user.bio} onChange={(e) => setBio(e.target.value)} />
                 <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
                     onClick={() => {
                         updateData();
