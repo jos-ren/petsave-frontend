@@ -56,6 +56,11 @@ const Name = styled.h2`
     font-size: ${props => props.username ? props.username : ""};
 `;
 
+const Bio = styled.p`
+    margin: 0px 0px 10px 20px;
+    // font-size: 16px;
+`;
+
 const Bottom = styled.div`
     display: flex;
     justify-content: space-between;
@@ -77,7 +82,7 @@ const Text = styled.h6`
     color: rgba(0, 0, 0, 0.5);
 `;
 
-const ProfileInfo = ({onEmail, onFollow, name, imgurl, numpost, numfollow, numfollower, displayfollow, displaymsg, username}) => {
+const ProfileInfo = ({onEmail, onFollow, name, imgurl, numpost, numfollow, numfollower, displayfollow, displaymsg, username, bio}) => {
     return (
         <Container>
             <Top>
@@ -91,7 +96,8 @@ const ProfileInfo = ({onEmail, onFollow, name, imgurl, numpost, numfollow, numfo
                 </Box>
             </Top>
             <Bottom>
-                <div>
+                <Bio>{bio}</Bio>
+                {/* <div>
                     <Num>{numpost}</Num>
                     <Text>Posts</Text>
                 </div>
@@ -102,7 +108,7 @@ const ProfileInfo = ({onEmail, onFollow, name, imgurl, numpost, numfollow, numfo
                 <div>
                     <Num>{numfollow}</Num>
                     <Text>Following</Text>
-                </div>
+                </div> */}
             </Bottom>
         </Container>
     )
@@ -118,7 +124,8 @@ ProfileInfo.defaultProps = {
     onFollow:()=>{},
     displayfollow: "flex",
     displaymsg: "flex",
-    username: "24px"
+    username: "24px",
+    bio: ""
 };
 
 export default ProfileInfo;

@@ -51,7 +51,7 @@ function UserProfile({ }) {
 
     const GetPosts = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
-        console.log("posts", resp.data.posts);
+        console.log("posts", resp.data);
 
         var token = await localStorage.getItem("token")
         if(token){
@@ -138,9 +138,7 @@ function UserProfile({ }) {
                 <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
                     name={user.fullname}
                     imgurl={user.profile_pic}
-                    numpost={user.numposts}
-                    numfollower={user.fllwrs}
-                    numfollow={user.fllwng}
+                    bio={user.bio}
                 />
                 {posts.map((o, i) => 
                     <HomeFeed key={i} img={o.img_src} onPostClick={()=>{

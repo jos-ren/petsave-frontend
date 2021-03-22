@@ -76,9 +76,10 @@ function Profile({ }) {
             onFollow={handleFollow}
             name={user.fullname}
             imgurl={user.profile_pic}
-            numpost={user.numposts}
-            numfollower={user.fllwrs}
-            numfollow={user.fllwng}
+            bio={user.bio}
+            // numpost={user.numposts}
+            // numfollower={user.fllwrs}
+            // numfollow={user.fllwng}
             /> 
             {posts.map((o, i) => 
             <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
