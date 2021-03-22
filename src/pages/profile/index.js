@@ -39,11 +39,16 @@ function Profile({ }) {
     };
 
     const GetPosts = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        // if (resp.data !== "expired" && resp.data !== "no token") {
-        //     setPosts([...resp.data])
-        //     console.log("posts", resp);
-        // } 
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
+        console.log("posts", resp.data.posts);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setPosts([...resp.data.posts])
+        } else {
+            history.push("/login");
+    }
     }
 
     const getUserData = async () => {
@@ -74,10 +79,11 @@ function Profile({ }) {
             numpost={user.numposts}
             numfollower={user.fllwrs}
             numfollow={user.fllwng}
-            />
-            <HomeFeed />
-            {posts.map((o, i) => <HomeFeed key={i} img={o.img_url}>
-            </HomeFeed>)}
+            /> 
+            {posts.map((o, i) => 
+            <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
+                history.push("/post/"+o.id)
+            }}/>)}
             <NavBar />
         </div>
     )
