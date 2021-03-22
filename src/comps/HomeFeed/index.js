@@ -47,7 +47,7 @@ border: none;
 
 
 
-const HomeFeed = ({ img }) => {
+const HomeFeed = ({ img, onPostClick }) => {
 
     //const params = useParams();
 
@@ -67,14 +67,9 @@ const HomeFeed = ({ img }) => {
 
     return <Container>
         <Column1>
-
-            <ImgCont onClick={() => {
-                // this will eventually lead to post:id once we have a backend
-                //history.push("/post/" + params.id)
-            }}>
-                <img className="img" src={img} alt="preview img"/>
+            <ImgCont onClick={onPostClick}>
+                <img className="img" src={img} />
             </ImgCont>
-
         </Column1>
 
         <Column2>
@@ -85,7 +80,8 @@ const HomeFeed = ({ img }) => {
 
 HomeFeed.defaultProps = {
     height: null,
-    img: "img/bunny.jpg"
+    img: "img/bunny.jpg",
+    onPostClick:()=>{}
 }
 
 export default HomeFeed;
