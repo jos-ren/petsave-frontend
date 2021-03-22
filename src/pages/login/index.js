@@ -31,13 +31,18 @@ function Login ({setToken}) {
             history.push("/home")
         } else {
             // update a state to show an error
-            setError("Incorrect email or password")
+            setError("Incorrect Email or Password")
         }
     }
 
+    useEffect(() => {
+        // handleLogin();
+      }, []);
+
+
     return (
         <div className="page">
-            <img src="/logo.svg" className="logo"/>
+            <img src="/logo.svg" className="logo" alt="logo"/>
             <div className="login_input">
                 <Input header="Username" onChange={(e)=>setUsername(e.target.value)}/>
                 <Input header="Password" type="password" placeholder="*********" onChange={(e)=>setPwd(e.target.value)}/>
@@ -49,6 +54,7 @@ function Login ({setToken}) {
                 onClick={()=>{
                     handleLogin();
                     setUser(username);
+                    setError("Incorrect Email or Password");
                 }}
                 />
                 <div>

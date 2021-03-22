@@ -96,7 +96,7 @@ const NavBar = ({ }) => {
                 </AddButton>
 
                 <IconCont onClick={() => {
-                    history.push("/myprofile")
+                    history.push("/myprofile/")
                     setFilled2(true)
                     }} 
                     src={filled2 ? "/icons/profile.svg" : "/icons/profile_outline.svg"}>
