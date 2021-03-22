@@ -89,67 +89,67 @@ function UserProfile({ }) {
         GetPosts();
     }, []);
 
-    // if (location.pathname === "/myprofile/edit") {
-    //     return (
-    //         <div className="page">
 
-    //             {popup ? <Backdrop /> : null}
-    //             {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
+    if (location.pathname === "/myprofile/edit") {
+        return (
+            <div className="page">
 
-    //             <TopNav displayr="none" />
-    //             <AddPhoto
-    //                 filename={image}
-    //                 onChange={
-    //                     e => {
-    //                         setImage(e.target.files[0])
-    //                         setImgurl(URL.createObjectURL(e.target.files[0]))
-    //                     }
-    //                 }
-    //                 image={imgurl}
-    //             />
-    //             <Input placeholder={user.fullname}
-    //                 onChange={(e) => setName(e.target.value)} />
-    //             <Input header="Email" placeholder={user.email}
-    //                 onChange={(e) => setEmail(e.target.value)} />
-    //             <Input header="Username" placeholder={user.username}
-    //                 onChange={(e) => setUsername(e.target.value)} />
-    //             <Input header="Password" type="password" placeholder="Enter your new password"
-    //                 onChange={(e) => setPwd(e.target.value)} />
-    //             <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
-    //                 onClick={() => {
-    //                     updateData();
-    //                 }}
-    //             />
-    //             <Button margin="12px" text="Log Out" disable="true"
-    //                 onClick={() => {
-    //                     setBoth();
-    //                 }} />
-    //         </div>
-    //     )
-    // } else {
-    return (
-        <div className="profile_page">
-            <TopNav displayl='none' iconright='/icons/settings.svg'
-                text={"@" + user.username}
-                onClick={() => {
-                    history.push("/myprofile/edit")
-                }}
-            />
-            <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
-                name={user.fullname}
-                imgurl={user.profile_pic}
-                bio={user.bio}
-            />
-            <HomeFeed />
-            {posts.map((o, i) =>
-                <HomeFeed key={i} img={o.img_src} onPostClick={() => {
-                    history.push("/post/" + o.id)
-                }} />)}
-            <NavBar iconl="/icons/home_outline.svg" iconr="/icons/profile.svg" />
+                {popup ? <Backdrop /> : null}
+                {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
 
+                <TopNav displayr="none"/>
+                <AddPhoto
+                    filename={image}
+                    onChange={
+                        e => {
+                            setImage(e.target.files[0])
+                            setImgurl(URL.createObjectURL(e.target.files[0]))
+                        }
+                    }
+                    image={imgurl}
+                />
+                <Input placeholder={user.fullname}
+                    onChange={(e) => setName(e.target.value)} />
+                <Input header="Email" placeholder={user.email}
+                    onChange={(e) => setEmail(e.target.value)} />
+                <Input header="Username" placeholder={user.username}
+                    onChange={(e) => setUsername(e.target.value)} />
+                <Input header="Password" type="password" placeholder="Enter your new password"
+                    onChange={(e) => setPwd(e.target.value)} />
+                <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
+                    onClick={() => {
+                        updateData();
+                    }}
+                />
+                <Button margin="12px" text="Log Out" disable="true"
+                    onClick={() => {
+                        setBoth();
+                    }} />
+            </div>
+        )
+    } else {
+        return (
+            <div className="profile_page">
+                <TopNav displayl='none' iconright='/icons/settings.svg'
+                    text={"@" + user.username}
+                    onClick={() => {
+                        history.push("/myprofile/edit")
+                    }}
+                />
+                <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
+                    name={user.fullname}
+                    imgurl={user.profile_pic}
+                    bio={user.bio}
+                />
+                {posts.map((o, i) => 
+                    <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
+                        history.push("/post/"+o.id)
+                }}/>)}
+                <NavBar profileIcon='icons/profile.svg' />
 
-        </div>
-    )
+            </div>
+        )
+            }
 };
 
 export default UserProfile;

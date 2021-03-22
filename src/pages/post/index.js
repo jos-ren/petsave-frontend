@@ -99,7 +99,7 @@ function Post() {
         });
         console.log("comment created,", resp);
 
-        // getComments();
+        getComments();
     };
     
 
@@ -120,7 +120,7 @@ function Post() {
             likes={postlikes}
             updateLikes={likePost}
             gotoProfile={()=>{
-                history.push("/profile/"+post.id)
+                history.push("/profile/"+post.username)
             }}
             />
         </PostBox>
@@ -136,6 +136,7 @@ function Post() {
                 pfpic={o.profile_pic}
             >
             </Comment>)}
+        <div className="comments"></div>
         <CmtInput 
         onChange={(e)=>setContent(e.target.value)}
          onClick={createComment}/>
