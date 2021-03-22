@@ -68,13 +68,20 @@ const Line = styled.div`
 `;
 
 
-const NavBar = ({ }) => {
+const NavBar = ({iconl, iconr }) => {
 
     const history = useHistory();
-    const params = useParams();
 
-    const [filled1, setFilled1] = useState(false);
+    const [filled1, setFilled1] = useState(true);
     const [filled2, setFilled2] = useState(false);
+
+    const setTabs = () => {
+        if (filled1 === true) {
+            setFilled2(false)
+        } else if (filled2 === true) {
+            setFilled1(false)
+        }
+    }
 
     return <div>
 
@@ -82,32 +89,26 @@ const NavBar = ({ }) => {
         <Container>
             <Line />
             <Box>
-                <IconCont onClick={() => {
-                    setFilled1(true)
+                <IconCont src={iconl} onClick={() => {
                     history.push("/home")
-                    }}
-                    src={filled1 ? "/icons/home.svg" : "/icons/home.svg"}>
-                </IconCont>
+                }} />
 
                 <AddButton onClick={() => {
                     history.push("/addpost")
                 }}>
-                    <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" alt="add"/>
+                    <img src='/icons/add.svg' fill="#FFFFFF" height="20px" width="20px" alt="add" />
                 </AddButton>
 
-                <IconCont onClick={() => {
-                    history.push("/myprofile/")
-                    setFilled2(true)
-                    }} 
-                    src={filled2 ? "/icons/profile.svg" : "/icons/profile_outline.svg"}>
-                </IconCont>
+                <IconCont src={iconr} onClick={() => {
+                    history.push("/myprofile")
+                }} />
             </Box>
         </Container>
     </div>
 }
 
 NavBar.defaultProps = {
-    onClick:()=>{},
+    onClick: () => { },
     disable: false,
 }
 

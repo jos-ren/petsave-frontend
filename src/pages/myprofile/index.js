@@ -54,7 +54,7 @@ function UserProfile({ }) {
         console.log("posts", resp.data);
 
         var token = await localStorage.getItem("token")
-        if(token){
+        if (token) {
             axios.defaults.headers.common['Authorization'] = token;
             setPosts([...resp.data.posts])
         } else {
@@ -127,29 +127,29 @@ function UserProfile({ }) {
     //         </div>
     //     )
     // } else {
-        return (
-            <div className="profile_page">
-                <TopNav displayl='none' iconright='/icons/settings.svg'
-                    text={"@" + user.username}
-                    onClick={() => {
-                        history.push("/myprofile/edit")
-                    }}
-                />
-                <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
-                    name={user.fullname}
-                    imgurl={user.profile_pic}
-                    bio={user.bio}
-                />        
-                <HomeFeed 
-                    img={posts.img_src} 
-                    id={posts.id}
-                    onPostClick={()=>{
-                            history.push("/post/"+params.id)
-                }}/>
-                <NavBar profileIcon='icons/profile.svg' />
+    return (
+        <div className="profile_page">
+            <TopNav displayl='none' iconright='/icons/settings.svg'
+                text={"@" + user.username}
+                onClick={() => {
+                    history.push("/myprofile/edit")
+                }}
+            />
+            <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
+                name={user.fullname}
+                imgurl={user.profile_pic}
+                bio={user.bio}
+            />
+            <HomeFeed />
+            {posts.map((o, i) =>
+                <HomeFeed key={i} img={o.img_src} onPostClick={() => {
+                    history.push("/post/" + o.id)
+                }} />)}
+            <NavBar iconl="/icons/home_outline.svg" iconr="/icons/profile.svg" />
 
-            </div>
-        )
+
+        </div>
+    )
 };
 
 export default UserProfile;

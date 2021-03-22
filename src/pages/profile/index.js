@@ -85,7 +85,7 @@ function Profile({ }) {
             <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
                 history.push("/post/"+o.id)
             }}/>)}
-            <NavBar />
+            <NavBar  iconl="/icons/home_outline.svg" iconr="/icons/profile_outline.svg"/>
         </div>
     )
 };
