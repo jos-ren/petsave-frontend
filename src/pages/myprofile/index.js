@@ -11,6 +11,7 @@ import Backdrop from "comps/Backdrop";
 import Button from "comps/Button/default";
 import Input from "comps/Input";
 import ConfirmBox from "comps/Confirm";
+import MultiLineInput from "comps/MultiLineInput";
 import { LogoutConfirm } from "stories/Confirm.stories";
 
 function UserProfile({ }) {
@@ -24,6 +25,7 @@ function UserProfile({ }) {
     const [username, setUsername] = useState("");
     const [pwd, setPwd] = useState("");
     const [email, setEmail] = useState("");
+    const [bio, setBio] = useState("");
     const [imgurl, setImgurl] = useState(null);
     const [image, setImage] = useState("");
     const [posts, setPosts] = useState([]);
@@ -38,7 +40,7 @@ function UserProfile({ }) {
     const getUserInfo = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/user");
         console.log("get data", resp);
-        console.log("get data", resp.data.user[0].id);
+        // console.log("get data", resp.data.user[0].id);
 
         var token = await localStorage.getItem("token")
         if (token) {
@@ -116,6 +118,7 @@ function UserProfile({ }) {
                     onChange={(e) => setUsername(e.target.value)} />
                 <Input header="Password" type="password" placeholder="Enter your new password"
                     onChange={(e) => setPwd(e.target.value)} />
+                <MultiLineInput header="Bio" placeholder={user.bio} onChange={(e) => setBio(e.target.value)} />
                 <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
                     onClick={() => {
                         updateData();
