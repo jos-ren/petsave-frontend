@@ -42,19 +42,12 @@ function Post() {
     // };
     
     const likePost = async () => {
-        const resp = await axios.post("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes",{
+        const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes",{
             likes: postlikes
         });        
 
         console.log("You liked this post!", resp);
-
-        var token = await localStorage.getItem("token")
-        if(token){
-            axios.defaults.headers.common['Authorization'] = token;
-            setPostLikes([...resp.data.likes]);
-        } else {
-            history.push("/login");
-    }
+        getLikes();
     }
 
 
@@ -88,12 +81,12 @@ function Post() {
     const getLikes = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes");
 
-        console.log("It worked", resp.data.likes);
+        console.log("It worked", resp.data.result[0].likes);
 
         var token = await localStorage.getItem("token")
         if(token){
             axios.defaults.headers.common['Authorization'] = token;
-            setPostLikes([...resp.data.likes]);
+            setPostLikes(resp.data.result[0].likes);
         } else {
             history.push("/login");
         }
@@ -124,7 +117,7 @@ function Post() {
             caption={post.caption}
             avatarimg={post.profile_pic}
             postimg={post.img_src}
-            likes={post.likes}
+            likes={postlikes}
             updateLikes={likePost}
             gotoProfile={()=>{
                 history.push("/profile/"+post.id)

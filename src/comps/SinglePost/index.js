@@ -80,7 +80,7 @@ const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, display
             </ImgBox>
             <InteractBox>
                 <Comment src={commentimg} onClick={gotoPost} />
-                <LikeButton likes={likes} onClick={updateLikes}/>
+                <LikeButton likes={likes} updateLikes={updateLikes}/>
             </InteractBox>
             <h6 onClick={gotoPost}
             >{caption}</h6>
