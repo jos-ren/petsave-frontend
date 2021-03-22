@@ -78,7 +78,7 @@ function Home() {
         caption={o.caption}
         avatarimg={o.profile_pic}
         postimg={o.img_src}
-        likes={o.likes}
+        likes={postlikes}
         gotoProfile={()=>{
             history.push("/profile/"+o.username)
         }}
