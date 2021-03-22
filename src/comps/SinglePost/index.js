@@ -91,10 +91,10 @@ const SinglePost = ({ commentimg, avatarimg, postimg, caption, username, display
 
 SinglePost.defaultProps = {
     commentimg: "/icons/comment_outline.svg",
-    avatarimg: "/img/kitty.jpg",
+    avatarimg: null,
     postimg: null,
-    caption: "this is an example caption which will go under each post to show what a caption will eventually look like",
-    username: "alveus_sanctuary",
+    caption: "caption",
+    username: "username",
     displayline: "flex",
     likes: 120,
     gotoPost:()=>{},
