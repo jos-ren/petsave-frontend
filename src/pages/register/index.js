@@ -61,7 +61,7 @@ function Register() {
         bgcolor="#c4c4c4"
         onClick={() => {
           HandleRegister();
-          // console.log(pwd)
+          // console.log(bio)
         }}
       />
     </div>
