@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import FollowButton from "comps/Button/follow";
-import RoundButton from "comps/Button/round";
 
 const Container = styled.div`
     min-width: 414px;
@@ -16,7 +14,6 @@ const Container = styled.div`
 
 const Top = styled.div`
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 85%;
 `
@@ -50,8 +47,7 @@ const Box = styled.div`
 
 const Name = styled.h2`
     text-transform: capitalize;
-
-    margin: 0px 0px 10px 15px;
+    margin: 0px 0px 0px 15px;
     text-align: left;
     font-size: ${props => props.username ? props.username : ""};
 `;
@@ -89,10 +85,10 @@ const ProfileInfo = ({onEmail, onFollow, name, imgurl, numpost, numfollow, numfo
                 <Image src={imgurl}/>
                 <Box>
                     <Name username={username}>{name}</Name>
-                    <ButtonBox>
+                    {/* <ButtonBox>
                         <FollowButton displayfollow={displayfollow} onClick={onFollow} />
                         <RoundButton displaymsg={displaymsg} onClick={onEmail}/>
-                    </ButtonBox>
+                    </ButtonBox> */}
                 </Box>
             </Top>
             <Bottom>
