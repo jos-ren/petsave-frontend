@@ -18,8 +18,16 @@ function Register() {
   const [pwd, setPwd] = useState("");
 
   const HandleRegister = async () => {
-    const resp = await axios.post("https://petsave-backend.herokuapp.com/api/register", { fullname: name, email: email, username: username, pwd: pwd,  profile_pic:image });
+    console.log(image);
+    const data = new FormData()
+    data.append('profile_pic', image)
+    data.append('email', email)
+    data.append('fullname', name)
+    data.append('username', username)
+    data.append('pwd', pwd)
+    const resp = await axios.post("https://petsave-backend.herokuapp.com/api/register", data);
     console.log("response", resp);
+    // return false;
     if (resp.data !== "Something went wrong registering user") {
       // this part is based on what we add in database - how?
       history.push("/login")
