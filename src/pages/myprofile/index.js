@@ -26,6 +26,7 @@ function UserProfile({ }) {
     const [email, setEmail] = useState("");
     const [imgurl, setImgurl] = useState(null);
     const [image, setImage] = useState("");
+    const [posts, setPosts] = useState([]);
 
     const [popup, setPopup] = useState(false);
     const [confirm, setConfirm] = useState(false);
@@ -43,6 +44,19 @@ function UserProfile({ }) {
         if (token) {
             axios.defaults.headers.common['Authorization'] = token;
             setUser({ ...resp.data.user[0] });
+        } else {
+            history.push("/login");
+        }
+    }
+
+    const GetPosts = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
+        console.log("posts", resp.data.posts);
+
+        var token = await localStorage.getItem("token")
+        if(token){
+            axios.defaults.headers.common['Authorization'] = token;
+            setPosts([...resp.data.posts])
         } else {
             history.push("/login");
         }
@@ -72,6 +86,7 @@ function UserProfile({ }) {
 
     useEffect(() => {
         getUserInfo();
+        GetPosts();
     }, []);
 
     if (location.pathname === "/myprofile/edit") {
@@ -127,7 +142,10 @@ function UserProfile({ }) {
                     numfollower={user.fllwrs}
                     numfollow={user.fllwng}
                 />
-                <HomeFeed />
+                {posts.map((o, i) => 
+                    <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
+                        history.push("/post/"+o.id)
+                }}/>)}
                 <NavBar profileIcon='icons/profile.svg' />
 
             </div>

@@ -31,12 +31,13 @@ function Login ({setToken}) {
             history.push("/home")
         } else {
             // update a state to show an error
-            setError("Incorrect email or password!")
+            setError("Incorrect Email or Password")
         }
     }
 
     useEffect(() => {
         handleLogin();
+        setError("Incorrect Email or Password");
       }, []);
 
 
@@ -54,7 +55,6 @@ function Login ({setToken}) {
                 onClick={()=>{
                     handleLogin();
                     setUser(username);
-                    setError("Incorrect Email or Password!")
                 }}
                 />
                 <div>
