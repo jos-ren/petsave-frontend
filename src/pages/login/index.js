@@ -37,7 +37,6 @@ function Login ({setToken}) {
 
     useEffect(() => {
         handleLogin();
-        setError("Incorrect Email or Password");
       }, []);
 
 
@@ -55,6 +54,7 @@ function Login ({setToken}) {
                 onClick={()=>{
                     handleLogin();
                     setUser(username);
+                    setError("Incorrect Email or Password");
                 }}
                 />
                 <div>
