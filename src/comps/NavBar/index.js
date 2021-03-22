@@ -86,7 +86,7 @@ const NavBar = ({ }) => {
                     setFilled1(true)
                     history.push("/home")
                     }}
-                    src={filled1 ? "/icons/home.svg" : "/icons/home_outline.svg"}>
+                    src={filled1 ? "/icons/home.svg" : "/icons/home.svg"}>
                 </IconCont>
 
                 <AddButton onClick={() => {

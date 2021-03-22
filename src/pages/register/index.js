@@ -16,6 +16,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [pwd, setPwd] = useState("");
+  const [bio, setBio] = useState("");
 
   const HandleRegister = async () => {
     console.log(image);
@@ -25,6 +26,7 @@ function Register() {
     data.append('fullname', name)
     data.append('username', username)
     data.append('pwd', pwd)
+    data.append('bio', bio)
     const resp = await axios.post("https://petsave-backend.herokuapp.com/api/register", data);
     console.log("response", resp);
     // return false;
@@ -53,11 +55,13 @@ function Register() {
       <Input header="Email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
       <Input header="Username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)} />
       <Input header="Password" placeholder="Enter your password" type="password" onChange={(e) => setPwd(e.target.value)} />
+      <Input header="Bio" placeholder="Write a brief description of yourself" onChange={(e) => setBio(e.target.value)} />
       <Button margin="12px" text="Create Account"
-        disable={username === "" || pwd === "" || email ==="" || name ===""}
+        disable={username === "" || pwd === "" || email ==="" || name ==="" || bio === ""}
         bgcolor="#c4c4c4"
         onClick={() => {
           HandleRegister();
+          // console.log(pwd)
         }}
       />
     </div>
