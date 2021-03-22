@@ -49,28 +49,28 @@ border: none;
 
 const HomeFeed = ({ img }) => {
 
-    const params = useParams();
+    //const params = useParams();
 
-    const [feedClick, setFeedClick] = useState(false);
+    //const [feedClick, setFeedClick] = useState(false);
     const history = useHistory();
 
-    const setFeedClick = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
-        feedClick({...resp.data.posts});
-        console.log("posts", resp);
-    }
+    // const setFeedClick = async () => {
+    //     const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
+    //     feedClick({...resp.data.posts});
+    //     console.log("posts", resp);
+    // }
 
-    useEffect(()=>{
-        setFeedClick();
-        console.log("params", params.id);
-    }, [])
+    // useEffect(()=>{
+    //     setFeedClick();
+    //     console.log("params", params.id);
+    // }, [])
 
     return <Container>
         <Column1>
 
             <ImgCont onClick={() => {
                 // this will eventually lead to post:id once we have a backend
-                history.push("/post/" + params.id)
+                //history.push("/post/" + params.id)
             }}>
                 <img className="img" src={img} alt="preview img"/>
             </ImgCont>
