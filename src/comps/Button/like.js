@@ -21,40 +21,42 @@ class Likes extends React.Component {
     super(props);
     this.state ={
       likes: props.likes,
-      updated: false
+      updated: false,
+      onClick: () => { }
     }
-    this.updateLikes = this.updateLikes.bind(this);
+    // this.updateLikes = this.updateLikes.bind(this);
   }
 
-  updateLikes() {
+  
+  // updateLikes() {
 
-    if(!this.state.updated) {
-      this.setState((prevState, props) => {
+  //   if(!this.state.updated) {
+  //     this.setState((prevState, props) => {
         
-        return {
-          likes: prevState.likes + 1,
-          updated: true
-        };
-      });
-    } else {
+  //       return {
+  //         likes: prevState.likes + 1,
+  //         updated: true
+  //       };
+  //     });
+  //   } else {
 
-      this.setState((prevState, props) => {
-        return {
-          likes: prevState.likes - 1,
-          updated: false
-        };
-      });
-    }
-  }
+  //     this.setState((prevState, props) => {
+  //       return {
+  //         likes: prevState.likes - 1,
+  //         updated: false
+  //       };
+  //     });
+  //   }
+  // }
 
   render(){
     
     return(
       <Container>
-        <IconCon onClick={this.updateLikes}>
+        <IconCon onClick={this.props.updateLikes}>
           <LikesIcon />
         </IconCon>
-          <h4>{this.state.likes} likes</h4>
+          <h4>{this.props.likes} likes</h4>
       </Container>
     );
   }

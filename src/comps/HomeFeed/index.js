@@ -49,16 +49,27 @@ border: none;
 
 const HomeFeed = ({ img, onPostClick }) => {
 
-    const [feedClick, setFeedClick] = useState(false);
+    //const params = useParams();
+
+    //const [feedClick, setFeedClick] = useState(false);
     const history = useHistory();
+
+    // const setFeedClick = async () => {
+    //     const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.id + "/posts");
+    //     feedClick({...resp.data.posts});
+    //     console.log("posts", resp);
+    // }
+
+    // useEffect(()=>{
+    //     setFeedClick();
+    //     console.log("params", params.id);
+    // }, [])
 
     return <Container>
         <Column1>
-
             <ImgCont onClick={onPostClick}>
                 <img className="img" src={img} />
             </ImgCont>
-
         </Column1>
 
         <Column2>

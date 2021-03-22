@@ -26,6 +26,7 @@ function UserProfile({ }) {
     const [email, setEmail] = useState("");
     const [imgurl, setImgurl] = useState(null);
     const [image, setImage] = useState("");
+    const [posts, setPosts] = useState([]);
 
     const [popup, setPopup] = useState(false);
     const [confirm, setConfirm] = useState(false);
@@ -43,6 +44,19 @@ function UserProfile({ }) {
         if (token) {
             axios.defaults.headers.common['Authorization'] = token;
             setUser({ ...resp.data.user[0] });
+        } else {
+            history.push("/login");
+        }
+    }
+
+    const GetPosts = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
+        console.log("posts", resp.data);
+
+        var token = await localStorage.getItem("token")
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = token;
+            setPosts([...resp.data.posts])
         } else {
             history.push("/login");
         }
@@ -72,6 +86,7 @@ function UserProfile({ }) {
 
     useEffect(() => {
         getUserInfo();
+        GetPosts();
     }, []);
 
     // if (location.pathname === "/myprofile/edit") {
@@ -112,26 +127,29 @@ function UserProfile({ }) {
     //         </div>
     //     )
     // } else {
-        return (
-            <div className="profile_page">
-                <TopNav displayl='none' iconright='/icons/settings.svg'
-                    text={"@" + user.username}
-                    onClick={() => {
-                        history.push("/myprofile/edit")
-                    }}
-                />
-                <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
-                    name={user.fullname}
-                    imgurl={user.profile_pic}
-                    numpost={user.numposts}
-                    numfollower={user.fllwrs}
-                    numfollow={user.fllwng}
-                />
-                <HomeFeed />
-                <NavBar iconl="/icons/home_outline.svg" iconr="/icons/profile.svg"/>
+    return (
+        <div className="profile_page">
+            <TopNav displayl='none' iconright='/icons/settings.svg'
+                text={"@" + user.username}
+                onClick={() => {
+                    history.push("/myprofile/edit")
+                }}
+            />
+            <ProfileInfo displayfollow='none' displaymsg='none' username="30px" imgurl='/img/hawk.jpg'
+                name={user.fullname}
+                imgurl={user.profile_pic}
+                bio={user.bio}
+            />
+            <HomeFeed />
+            {posts.map((o, i) =>
+                <HomeFeed key={i} img={o.img_src} onPostClick={() => {
+                    history.push("/post/" + o.id)
+                }} />)}
+            <NavBar iconl="/icons/home_outline.svg" iconr="/icons/profile.svg" />
 
-            </div>
-        )
+
+        </div>
+    )
 };
 
 export default UserProfile;
