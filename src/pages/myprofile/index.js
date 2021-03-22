@@ -54,7 +54,7 @@ function UserProfile({ }) {
         console.log("posts", resp.data);
 
         var token = await localStorage.getItem("token")
-        if(token){
+        if (token) {
             axios.defaults.headers.common['Authorization'] = token;
             setPosts([...resp.data.posts])
         } else {
@@ -88,6 +88,7 @@ function UserProfile({ }) {
         getUserInfo();
         GetPosts();
     }, []);
+
 
     if (location.pathname === "/myprofile/edit") {
         return (

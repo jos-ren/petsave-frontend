@@ -37,7 +37,7 @@ function AddPost() {
     setPopup(true);
     setConfirm(true);
     setPosts([resp.data])
-    console.log("resp", posts)
+    console.log("resp", resp.data)
   }
 
   return (
@@ -59,10 +59,10 @@ function AddPost() {
           }
           image={imgurl}
         />
-        <MultiLineInput header="Caption" onChange={(e) => setCaption(e.target.value)} />
-        <Button margin="0px 24px" text="Create Post" type="submit" />
+        <MultiLineInput margin="0px 24px" header="Caption" onChange={(e) => setCaption(e.target.value)} />
+        <Button disable={caption === "" || image === ""} margin="0px 24px" text="Create Post" type="submit" />
       </form>
-      <Navbar />
+      <Navbar  iconl="/icons/home_outline.svg" iconr="/icons/profile_outline.svg"/>
     </div>
   );
 }
