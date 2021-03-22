@@ -120,7 +120,7 @@ function Post() {
             likes={postlikes}
             updateLikes={likePost}
             gotoProfile={()=>{
-                history.push("/profile/"+post.id)
+                history.push("/profile/"+post.username)
             }}
             />
         </PostBox>
