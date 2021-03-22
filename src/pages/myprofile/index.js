@@ -139,11 +139,13 @@ function UserProfile({ }) {
                     name={user.fullname}
                     imgurl={user.profile_pic}
                     bio={user.bio}
-                />
-                {posts.map((o, i) => 
-                    <HomeFeed key={i} img={o.img_src} onPostClick={()=>{
-                        history.push("/post/"+o.id)
-                }}/>)}
+                />        
+                <HomeFeed 
+                    img={posts.img_src} 
+                    id={posts.id}
+                    onPostClick={()=>{
+                            history.push("/post/"+params.id)
+                }}/>
                 <NavBar profileIcon='icons/profile.svg' />
 
             </div>
