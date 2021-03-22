@@ -74,44 +74,44 @@ function UserProfile({ }) {
         getUserInfo();
     }, []);
 
-    if (location.pathname === "/myprofile/edit") {
-        return (
-            <div className="page">
+    // if (location.pathname === "/myprofile/edit") {
+    //     return (
+    //         <div className="page">
 
-                {popup ? <Backdrop /> : null}
-                {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
+    //             {popup ? <Backdrop /> : null}
+    //             {confirm ? <ConfirmBox reMove2="false" text="Are you sure?" onLogout={logOutUser} /> : null}
 
-                <TopNav displayr="none" />
-                <AddPhoto
-                    filename={image}
-                    onChange={
-                        e => {
-                            setImage(e.target.files[0])
-                            setImgurl(URL.createObjectURL(e.target.files[0]))
-                        }
-                    }
-                    image={imgurl}
-                />
-                <Input placeholder={user.fullname}
-                    onChange={(e) => setName(e.target.value)} />
-                <Input header="Email" placeholder={user.email}
-                    onChange={(e) => setEmail(e.target.value)} />
-                <Input header="Username" placeholder={user.username}
-                    onChange={(e) => setUsername(e.target.value)} />
-                <Input header="Password" type="password" placeholder="Enter your new password"
-                    onChange={(e) => setPwd(e.target.value)} />
-                <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
-                    onClick={() => {
-                        updateData();
-                    }}
-                />
-                <Button margin="12px" text="Log Out" disable="true"
-                    onClick={() => {
-                        setBoth();
-                    }} />
-            </div>
-        )
-    } else {
+    //             <TopNav displayr="none" />
+    //             <AddPhoto
+    //                 filename={image}
+    //                 onChange={
+    //                     e => {
+    //                         setImage(e.target.files[0])
+    //                         setImgurl(URL.createObjectURL(e.target.files[0]))
+    //                     }
+    //                 }
+    //                 image={imgurl}
+    //             />
+    //             <Input placeholder={user.fullname}
+    //                 onChange={(e) => setName(e.target.value)} />
+    //             <Input header="Email" placeholder={user.email}
+    //                 onChange={(e) => setEmail(e.target.value)} />
+    //             <Input header="Username" placeholder={user.username}
+    //                 onChange={(e) => setUsername(e.target.value)} />
+    //             <Input header="Password" type="password" placeholder="Enter your new password"
+    //                 onChange={(e) => setPwd(e.target.value)} />
+    //             <Button margin="12px" text="Save" bgcolor="#54BAF3" disable="true"
+    //                 onClick={() => {
+    //                     updateData();
+    //                 }}
+    //             />
+    //             <Button margin="12px" text="Log Out" disable="true"
+    //                 onClick={() => {
+    //                     setBoth();
+    //                 }} />
+    //         </div>
+    //     )
+    // } else {
         return (
             <div className="profile_page">
                 <TopNav displayl='none' iconright='/icons/settings.svg'
@@ -132,7 +132,6 @@ function UserProfile({ }) {
 
             </div>
         )
-    }
 };
 
 export default UserProfile;
