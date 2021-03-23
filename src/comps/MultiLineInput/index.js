@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    margin-left:24px;
+    margin: ${props => props.margin ? props.margin : null};
 `;
 
 const InputDiv = styled.textarea`
@@ -28,17 +28,17 @@ const InputDiv = styled.textarea`
 }
 `;
 
-const MultiLineInput = ({ header, id, onChange }) => {
-    return <Container>
+const MultiLineInput = ({ header, id, onChange, placeholder, margin }) => {
+    return <Container margin={margin}>
         <h3> {header} </h3>
-        <InputDiv id={id} onChange={onChange} />
+        <InputDiv id={id} onChange={onChange} placeholder={placeholder} />
     </Container>
 };
 
 MultiLineInput.defaultProps = {
     header: "Name",
     id: "name",
-    onChange:()=>{}
+    onChange: () => { },
 };
 
 export default MultiLineInput;
