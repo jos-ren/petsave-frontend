@@ -77,7 +77,7 @@ function Post() {
         }
     };
 
-    //Brittany's questionable getLikes function lol
+
     const getLikes = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/posts/"+params.id+"/likes");
 

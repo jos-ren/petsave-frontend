@@ -28,26 +28,7 @@ class Likes extends React.Component {
   }
 
   
-  // updateLikes() {
 
-  //   if(!this.state.updated) {
-  //     this.setState((prevState, props) => {
-        
-  //       return {
-  //         likes: prevState.likes + 1,
-  //         updated: true
-  //       };
-  //     });
-  //   } else {
-
-  //     this.setState((prevState, props) => {
-  //       return {
-  //         likes: prevState.likes - 1,
-  //         updated: false
-  //       };
-  //     });
-  //   }
-  // }
 
   render(){
     
