@@ -30,6 +30,8 @@ function Profile({ }) {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
 
+
+
     const GetPosts = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + params.username + "/posts");
         console.log("posts", resp.data.posts);
