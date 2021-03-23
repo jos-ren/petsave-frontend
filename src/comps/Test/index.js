@@ -6,9 +6,7 @@ const LikesIcon = () => {
   
     return <div>
               <img
-                onClick={() => setLightMode(prevMode => !prevMode)
-                  // useState(true);
-                }
+                onClick={() => setLightMode(true)}
                 src={lightMode ? "/icons/heart.svg" : "/icons/heart_outline.svg"}
                 alt="likes"
                 height="24px"
