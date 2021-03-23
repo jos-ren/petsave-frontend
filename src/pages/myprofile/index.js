@@ -53,22 +53,10 @@ function UserProfile({ }) {
         setConfirm(true);
     };
 
-    const getUserInfo = async () => {
-        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/user");
-        console.log("get user", resp.data.user[0]);
-
-        var token = await localStorage.getItem("token")
-        if (token) {
-            axios.defaults.headers.common['Authorization'] = token;
-            setUser({ ...resp.data.user[0] });
-        } else {
-            history.push("/login");
-        }
-    }
-
     const GetPosts = async () => {
         const resp = await axios.get("https://petsave-backend.herokuapp.com/api/users/" + user.username + "/posts");
         console.log("postssss", resp.data.posts);
+        // console.log("resp", resp)
 
         var token = await localStorage.getItem("token")
         if (token) {
@@ -78,6 +66,21 @@ function UserProfile({ }) {
             history.push("/login");
         }
     }
+
+    const getUserInfo = async () => {
+        const resp = await axios.get("https://petsave-backend.herokuapp.com/api/user");
+        console.log("get user", resp.data.user[0]);
+
+        var token = await localStorage.getItem("token")
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = token;
+            setUser({ ...resp.data.user[0] });
+            GetPosts()
+        } else {
+            history.push("/login");
+        }
+    }
+
 
     const updateData = async () => {
         const resp = await axios.patch("https://petsave-backend.herokuapp.com/api/user_edit/" + params.username, {
